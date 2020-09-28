@@ -129,7 +129,7 @@ var gunFamilies = new Array(
 			new Gun(1, false, "Nagant M1895 Officer", 66, "img/officer.jpg"),
 			new Gun(2, true, "Dual Nagant M1895 Officer", 132, "img/officer_dual.jpg"),
 			new Gun(1, false, "Nagant M1895 Officer Brawler", 80, "img/officer_bra.jpg"),
-			new Gun(2, true, "Dual Nagant M1895 Officer", 160, "img/officer_bra_dual.jpg"),
+			new Gun(2, true, "Dual Nagant M1895 Officer Brawler", 160, "img/officer_bra_dual.jpg"),
 			new Gun(3, false, "Nagant M1895 Officer Carbine", 80, "img/officer_carb.jpg")
 		)
 	),
@@ -256,7 +256,7 @@ var consumableFamilies = new Array(
 			new Consumable("Sticky Bomb", 64, "img/sticky.jpg"),
 			new Consumable("Dynamite Bundle", 75, "img/dynamite_bun.jpg"),
 			new Consumable("Frag Bomb", 70, "img/frag.jpg"),
-			new Consumable("Dynamite Bundle", 110, "img/dynamite_big.jpg")
+			new Consumable("Big Dynamite Bundle", 110, "img/dynamite_big.jpg")
 		)
 	),
 	new ConsumableFamily(1, new Array(
@@ -568,11 +568,361 @@ function getRandomInt(max) {
 }
 
 function previous(toRoll){
+	setParameterValues();
 	if (toRoll == "weapon1") {
-		console.log("previous")
+		if (generateWeapon1) {
+			if (weapon1 == null) {
+				initialName = " ";
+			} else {
+				initialName = weapon1.name;
+			}
+			setMaxSize();
+			remainingSize = maxSize;
+			if (weapon2 != null) {
+				remainingSize = maxSize - weapon2.size;
+			}
+			for(family of gunFamilies){
+				found = false;
+				for (var i = family.guns.length - 1; i >= 0; i--) {
+					if (found) {
+						gun = family.guns[i];
+						if (gun.size <= remainingSize) {
+							if (!(gun.dualWield && !allowDualWield)) {
+								if ((weapon2 != null && weapon2.name != gun.name) || weapon2 == null || (weapon2 != null && allowDuplicateWeapons)) {
+									weapon1 = gun;
+									break;
+								}
+							}
+						}
+					}
+					if (weapon1 != null && family.guns[i].name == weapon1.name){
+						found = true;
+					}
+				}
+			}
+			if (weapon1 !=null && initialName != weapon1.name){
+				document.getElementById("w1").src = weapon1.image;
+				document.getElementById("w1").alt = weapon1.name;
+			}
+		}
+	}
+	if (toRoll == "weapon2") {
+		if (generateWeapon2) {
+			if (weapon2 == null) {
+				initialName = " ";
+			} else {
+				initialName = weapon2.name;
+			}
+			setMaxSize();
+			remainingSize = maxSize;
+			if (weapon1 != null) {
+				remainingSize = maxSize - weapon1.size;
+			}
+			for(family of gunFamilies){
+				found = false;
+				for (var i = family.guns.length - 1; i >= 0; i--) {
+					if (found) {
+						gun = family.guns[i];
+						if (gun.size <= remainingSize) {
+							if (!(gun.dualWield && !allowDualWield)) {
+								if ((weapon1 != null && weapon1.name != gun.name) || weapon1 == null || (weapon1 != null && allowDuplicateWeapons)) {
+									weapon2 = gun;
+									break;
+								}
+							}
+						}
+					}
+					if (weapon2 !=null && family.guns[i].name == weapon2.name){
+						found = true;
+					}
+				}
+			}
+			if (weapon2 !=null && initialName != weapon2.name){
+				document.getElementById("w2").src = weapon2.image;
+				document.getElementById("w2").alt = weapon2.name;
+			}
+		}
+	}
+	if (toRoll == "tool1") {
+		if (generateTool1) {
+			for(family of toolFamilies) {
+				found = false;
+				for (var i = family.tools.length - 1; i >= 0; i--) {
+					tool = family.tools[i]
+					if (found) {
+						if(	   (tool2 == null || (tool2 != null && tool2.name != tool.name))
+							&& (tool3 == null || (tool3 != null && tool3.name != tool.name))
+							&& (tool4 == null || (tool4 != null && tool4.name != tool.name))) {
+							tool1 = tool;
+							break;
+						}
+					}
+					if (tool1 != null && tool.name == tool1.name) {
+						found = true;
+					}
+				}
+				if (found){
+					document.getElementById("t1").src = tool1.image;
+					document.getElementById("t1").alt = tool1.name;
+					break;
+				}
+			}
+		}
+	}
+	if (toRoll == "tool2") {
+		if (generateTool2) {
+			for(family of toolFamilies) {
+				found = false;
+				for (var i = family.tools.length - 1; i >= 0; i--) {
+					tool = family.tools[i]
+					if (found) {
+						if(	   (tool1 == null || (tool1 != null && tool1.name != tool.name))
+							&& (tool3 == null || (tool3 != null && tool3.name != tool.name))
+							&& (tool4 == null || (tool4 != null && tool4.name != tool.name))) {
+							tool2 = tool;
+							break;
+						}
+					}
+					if (tool2 != null && tool.name == tool2.name) {
+						found = true;
+					}
+				}
+				if (found){
+					document.getElementById("t2").src = tool2.image;
+					document.getElementById("t2").alt = tool2.name;
+					break;
+				}
+			}
+		}
+	}
+	if (toRoll == "tool3") {
+		if (generateTool3) {
+			for(family of toolFamilies) {
+				found = false;
+				for (var i = family.tools.length - 1; i >= 0; i--) {
+					tool = family.tools[i]
+					if (found) {
+						if(	   (tool2 == null || (tool2 != null && tool2.name != tool.name))
+							&& (tool1 == null || (tool1 != null && tool1.name != tool.name))
+							&& (tool4 == null || (tool4 != null && tool4.name != tool.name))) {
+							tool3 = tool;
+							break;
+						}
+					}
+					if (tool3 != null && tool.name == tool3.name) {
+						found = true;
+					}
+				}
+				if (found){
+					document.getElementById("t3").src = tool3.image;
+					document.getElementById("t3").alt = tool3.name;
+					break;
+				}
+			}
+		}
+	}
+	if (toRoll == "tool4") {
+		if (generateTool4) {
+			for(family of toolFamilies) {
+				found = false;
+				for (var i = family.tools.length - 1; i >= 0; i--) {
+					tool = family.tools[i]
+					if (found) {
+						if(	   (tool2 == null || (tool2 != null && tool2.name != tool.name))
+							&& (tool3 == null || (tool3 != null && tool3.name != tool.name))
+							&& (tool1 == null || (tool1 != null && tool1.name != tool.name))) {
+							tool4 = tool;
+							break;
+						}
+					}
+					if (tool4 != null && tool.name == tool4.name) {
+						found = true;
+					}
+				}
+				if (found){
+					document.getElementById("t4").src = tool4.image;
+					document.getElementById("t4").alt = tool4.name;
+					break;
+				}
+			}
+		}
+	}
+	if (toRoll == "consumable1") {
+		if (generateConsumable1) {
+			for(family of consumableFamilies) {
+				found = false;
+				for (var i = family.consumables.length - 1; i >= 0; i--) {
+					consumable = family.consumables[i];
+					if (found) {
+						consumable1 = consumable;
+						break;
+					}
+					if (consumable1 != null && consumable.name == consumable1.name) {
+						found = true;
+					}
+				}
+				if (found) {
+					document.getElementById("c1").src = consumable1.image;
+					document.getElementById("c1").alt = consumable1.name;
+				}
+			}
+		}
+	}
+	if (toRoll == "consumable2") {
+		if (generateConsumable2) {
+			for(family of consumableFamilies) {
+				found = false;
+				for (var i = family.consumables.length - 1; i >= 0; i--) {
+					consumable = family.consumables[i];
+					if (found) {
+						consumable2 = consumable;
+						break;
+					}
+					if (consumable2 != null && consumable.name == consumable2.name) {
+						found = true;
+					}
+				}
+				if (found) {
+					document.getElementById("c2").src = consumable2.image;
+					document.getElementById("c2").alt = consumable2.name;
+				}
+			}
+		}
+	}
+	if (toRoll == "consumable3") {
+		if (generateConsumable3) {
+			for(family of consumableFamilies) {
+				found = false;
+				for (var i = family.consumables.length - 1; i >= 0; i--) {
+					consumable = family.consumables[i];
+					if (found) {
+						consumable3 = consumable;
+						break;
+					}
+					if (consumable3 != null && consumable.name == consumable3.name) {
+						found = true;
+					}
+				}
+				if (found) {
+					document.getElementById("c3").src = consumable3.image;
+					document.getElementById("c3").alt = consumable3.name;
+				}
+			}
+		}
+	}
+	if (toRoll == "consumable4") {
+		if (generateConsumable4) {
+			for(family of consumableFamilies) {
+				found = false;
+				for (var i = family.consumables.length - 1; i >= 0; i--) {
+					consumable = family.consumables[i];
+					if (found) {
+						consumable4 = consumable;
+						break;
+					}
+					if (consumable4 != null && consumable.name == consumable4.name) {
+						found = true;
+					}
+				}
+				if (found) {
+					document.getElementById("c4").src = consumable4.image;
+					document.getElementById("c4").alt = consumable4.name;
+				}
+			}
+		}
 	}
 }
 
-function rerollWeapon1() {
-	console.log("reroll")
+function reroll(toRoll){
+	setParameterValues();
+	if (toRoll == "weapon1") {
+		if (generateWeapon1) {	
+			setMaxSize();
+			weapon1 = null;
+			remainingSize = maxSize;
+			if (weapon2 != null) {
+				remainingSize = maxSize - weapon2.size;
+			}
+			weapon1 = generateWeapon(); 
+			document.getElementById("w1").src = weapon1.image;
+			document.getElementById("w1").alt = weapon1.name;
+		}
+	}
+	if (toRoll == "weapon2") {
+		if (generateWeapon2) {	
+			setMaxSize();
+			weapon2 = null;
+			remainingSize = maxSize;
+			if (weapon1 != null) {
+				remainingSize = maxSize - weapon1.size;
+			}
+			weapon2 = generateWeapon(); 
+			document.getElementById("w2").src = weapon2.image;
+			document.getElementById("w2").alt = weapon2.name;
+		}
+	}
+	if (toRoll == "tool1") {
+		if (generateTool1) {
+			tool1 = null;
+			tool1 = generateTool();
+			document.getElementById("t1").src = tool1.image;
+			document.getElementById("t1").alt = tool1.name;
+		}
+	}
+	if (toRoll == "tool2") {
+		if (generateTool2) {
+			tool2 = null;
+			tool2 = generateTool();
+			document.getElementById("t2").src = tool2.image;
+			document.getElementById("t2").alt = tool2.name;
+		}
+	}
+	if (toRoll == "tool3") {
+		if (generateTool3) {
+			tool3 = null;
+			tool3 = generateTool();
+			document.getElementById("t3").src = tool3.image;
+			document.getElementById("t3").alt = tool3.name;
+		}
+	}
+	if (toRoll == "tool4") {
+		if (generateTool4) {	
+			tool4 = null;
+			tool4 = generateTool();
+			document.getElementById("t4").src = tool4.image;
+			document.getElementById("t4").alt = tool4.name;
+		}
+	}
+	if (toRoll == "consumable1") {
+		if (generateConsumable1){
+			consumable1 = null;
+			consumable1 = generateConsumable();
+			document.getElementById("c1").src = consumable1.image;
+			document.getElementById("c1").alt = consumable1.name;
+		}	
+	}
+	if (toRoll == "consumable2") {
+		if (generateConsumable2){
+			consumable2 = null;
+			consumable2 = generateConsumable();
+			document.getElementById("c2").src = consumable2.image;
+			document.getElementById("c2").alt = consumable2.name;
+		}
+	}
+	if (toRoll == "consumable3") {
+		if (generateConsumable3){
+			consumable3 = null;
+			consumable3 = generateConsumable();
+			document.getElementById("c3").src = consumable3.image;
+			document.getElementById("c3").alt = consumable3.name;
+		}
+	}
+	if (toRoll == "consumable4") {
+		if (generateConsumable4){
+			consumable4 = null;
+			consumable4 = generateConsumable();
+			document.getElementById("c4").src = consumable4.image;
+			document.getElementById("c4").alt = consumable4.name;
+		}
+	}
 }

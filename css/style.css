@@ -125,7 +125,7 @@ img.hover1 {
 	display: none;
 	position: absolute;
 	z-index: 100000;
-	right: 13px;
+	left: 13px;
 	top: 13px;
 	cursor: pointer;
 	border: 1px solid black;
@@ -135,7 +135,7 @@ img.hover2 {
 	display: none;
 	position: absolute;
 	z-index: 100000;
-	right: 46px;
+	left: 46px;
 	top: 13px;
 	cursor: pointer;
 	border: 1px solid black;
