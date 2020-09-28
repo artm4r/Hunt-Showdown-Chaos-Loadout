@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300&display=swap');
+
+html, body {
+	 width: 100%;
+	 height: 100%;
+	 margin:0;
+	 text-align: center;
+	 position: relative;
+	 color: white;
+	 font-family: 'Roboto', sans-serif;
+	 background-color: #121212;
+	}
+
+.header {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 120px;
+	line-height: 120px;
+	text-align: center;
+	background-color: #ffffff;
+}
+
+.header img {
+	height: 157px;
+	width: 1920px;
+}
+
+.footer {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	background-color: #ffffff;
+}
+
+.body-content{
+	margin: 0 auto;
+	padding-top: 180px;
+	max-width: 1200px;
+	width: 100%;
+	height: 100%;
+}
+
+.loadout {
+	margin: 0;
+	position: relative;
+	display: inline-block;
+	text-align: left;
+	max-width: 500px;
+	color: white;
+}
+
+.loadout ul {
+  list-style-type: none;
+}
+
+.loadout li {
+  display: block;
+}
+
+.loadout input[type="checkbox"] {
+  display: none;
+}
+
+.loadout div label:first-of-type {
+  display: inline-block;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.loadout div label img {
+  transition-duration: 0.2s;
+  transform-origin: 50% 50%;
+  z-index: -1;
+}
+
+.loadout :checked + label img {
+  box-shadow: 0 0 10px red;
+}
+
+.loadout div {
+	display: inline-block;
+	position: relative;
+}
+
+button.red-button {
+    background: #8B0000; 
+    border: 1px solid #8B0000;
+    color: white;
+    line-height: 25px;
+    width: 200px;
+    padding: 5px 10px;
+    border-radius: 2px;
+    outline: none;
+    text-shadow: 0 1px 0 #C04131;
+
+}
+
+button.red-button:hover {
+     background: #FF0000;
+     border: 1px solid #FF0000;
+}
+
+button.red-button:active {
+    background: #8B0000;
+    border: 1px solid #8B0000;
+}
+
+div.option {
+	display: inline-block;
+	width: 170px;
+	text-align: center;
+}
+
+div.option input[type="checkbox"]:checked {
+	box-shadow: 0 0 5px red;
+}
+
+img.hover1 {
+	display: none;
+	position: absolute;
+	z-index: 100000;
+	right: 13px;
+	top: 13px;
+	cursor: pointer;
+	border: 1px solid black;
+}
+
+img.hover2 {
+	display: none;
+	position: absolute;
+	z-index: 100000;
+	right: 46px;
+	top: 13px;
+	cursor: pointer;
+	border: 1px solid black;
+}
+
+img.hover1:hover, img.hover2:hover {
+	box-shadow: 0 0 5px white; 
+}
+
+.loadout div:hover img.hover1, .loadout div:hover img.hover2 {
+	display: inline-block;
+}
