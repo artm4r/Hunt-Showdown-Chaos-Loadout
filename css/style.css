@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:300&display=swap');
-
 html, body {
 	 width: 100%;
 	 height: 100%;
@@ -7,7 +5,7 @@ html, body {
 	 text-align: center;
 	 position: relative;
 	 color: white;
-	 font-family: 'Roboto', sans-serif;
+	 font-family: sans-serif;
 	 background-color: #121212;
 	}
 
@@ -113,12 +111,9 @@ button.red-button:active {
 
 div.option {
 	display: inline-block;
-	width: 170px;
+	width: 200px;
+	line-height: 23px;
 	text-align: center;
-}
-
-div.option input[type="checkbox"]:checked {
-	box-shadow: 0 0 5px red;
 }
 
 img.hover1 {
@@ -147,4 +142,76 @@ img.hover1:hover, img.hover2:hover {
 
 .loadout div:hover img.hover1, .loadout div:hover img.hover2 {
 	display: inline-block;
+}
+
+form .switch {
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 23px;
+}
+
+/* Hide default HTML checkbox */
+form .switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+form .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #303030;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+form .slider:before {
+  position: absolute;
+  content: "";
+  height: 15px;
+  width: 15px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+form input:checked + .slider {
+  background-color: #8B0000;
+}
+
+form input:focus + .slider {
+  box-shadow: 0 0 1px #8B0000;
+}
+
+form input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+form .slider.round {
+  border-radius: 34px;
+}
+
+form .slider.round:before {
+  border-radius: 50%;
+}
+
+input[type="number"] {
+  background-color: #8B0000;
+  color: white;
+  border-style: solid;
+  border-color: black;
+  border-radius: 5px;
+  border-width: 0px;
+  line-height: 27px;
 }
