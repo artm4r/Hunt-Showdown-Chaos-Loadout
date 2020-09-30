@@ -3,14 +3,6 @@ var rank = 100;
 var maxSize = 4;
 var generateWeapon1 = true;
 var generateWeapon2 = true;
-var generateTool1 = true;
-var generateTool2 = true;
-var generateTool3 = true;
-var generateTool4 = true;
-var generateConsumable1 = true;
-var generateConsumable2 = true;
-var generateConsumable3 = true;
-var generateConsumable4 = true;
 var allowDualWield = true;
 var allowQuatermaster = false;
 var allowDuplicateWeapons = true;
@@ -18,14 +10,16 @@ var allowDuplicateWeapons = true;
 //Variables for result
 var weapon1 = null;
 var weapon2 = null;
-var tool1 = null;
-var tool2 = null;
-var tool3 = null;
-var tool4 = null;
-var consumable1 = null;
-var consumable2 = null;
-var consumable3 = null;
-var consumable4 = null;
+
+// store the actual values of tools/consumables
+var store = {
+	tools: [null, null, null, null],
+	consumables: [null, null, null, null]
+};
+
+// store which slots need updating
+var updateStack = {tools: [], consumables: []};
+
 var remainingSize = 0;
 
 //Data intialization
@@ -288,6 +282,30 @@ var consumableFamilies = new Array(
 	)
 );
 
+// update Tool and Consumable Slots
+function updateSlots(random) {
+	Object.keys(updateStack).forEach(function(key) {
+		updateStack[key].forEach(function(num) {
+			var e = document.getElementById(key.substr(0,1)+num);
+
+			if (random) {
+				// TODO: Make generate more general to avoid the switch
+				switch (key) {
+					case "tools":
+						store[key][(num-1)] = generateTool();
+						break;
+					case "consumables":
+						store[key][(num-1)] = generateConsumable();
+						break;
+				}
+				
+			}
+			e.src = store[key][(num-1)].image;
+			e.alt = store[key][(num-1)].name;
+		})
+	});
+}
+
 function generate() {
 	setParameterValues();
 	setMaxSize();
@@ -295,10 +313,12 @@ function generate() {
 		remainingSize = maxSize;
 		weapon1 = null;
 		weapon2 = null;
+/*
 		tool1 = null;
 		tool2 = null;
 		tool3 = null;
 		tool4 = null;
+*/
 		consumable1 = null;
 		consumable2 = null;
 		consumable3 = null;
@@ -318,63 +338,10 @@ function generate() {
 			document.getElementById("w2").alt = weapon2.name;
 		} else{
 			document.getElementById("w2").src = "img/emptySmall.jpg";
-		} 
-		if (generateTool1) {
-			tool1 = generateTool();
-			document.getElementById("t1").src = tool1.image;
-			document.getElementById("t1").alt = tool1.name;
-		} else{
-			document.getElementById("t1").src = "img/emptySmall.jpg";
 		}
-		if (generateTool2) {
-			tool2 = generateTool();
-			document.getElementById("t2").src = tool2.image;
-			document.getElementById("t2").alt = tool2.name;
-		} else{
-			document.getElementById("t2").src = "img/emptySmall.jpg";
-		}
-		if (generateTool3) {
-			tool3 = generateTool();
-			document.getElementById("t3").src = tool3.image;
-			document.getElementById("t3").alt = tool3.name;
-		} else{
-			document.getElementById("t3").src = "img/emptySmall.jpg";
-		}
-		if (generateTool4) {
-			tool4 = generateTool();
-			document.getElementById("t4").src = tool4.image;
-			document.getElementById("t4").alt = tool4.name;
-		} else{
-			document.getElementById("t4").src = "img/emptySmall.jpg";
-		}
-		if (generateConsumable1) {
-			consumable1 = generateConsumable();
-			document.getElementById("c1").src = consumable1.image;
-			document.getElementById("c1").alt = consumable1.name;
-		} else{
-			document.getElementById("c1").src = "img/emptySmall.jpg";
-		}
-		if (generateConsumable2) {
-			consumable2 = generateConsumable();
-			document.getElementById("c2").src = consumable2.image;
-			document.getElementById("c2").alt = consumable2.name;
-		} else{
-			document.getElementById("c2").src = "img/emptySmall.jpg";
-		}
-		if (generateConsumable3) {
-			consumable3 = generateConsumable();
-			document.getElementById("c3").src = consumable3.image;
-			document.getElementById("c3").alt = consumable3.name;
-		} else{
-			document.getElementById("c3").src = "img/emptySmall.jpg";
-		}
-		if (generateConsumable4) {
-			consumable4 = generateConsumable();
-			document.getElementById("c4").src = consumable4.image;
-			document.getElementById("c4").alt = consumable4.name;
-		} else{
-			document.getElementById("c4").src = "img/emptySmall.jpg";
-		}
+
+		updateSlots(true);
+
 	}
 }
 
@@ -425,10 +392,12 @@ function setMaxSize() {
 function setParameterValues() {
 	generateWeapon1 = document.getElementById("weapon1").checked;
 	generateWeapon2 = document.getElementById("weapon2").checked;
+/*
 	generateTool1 = document.getElementById("tool1").checked;
 	generateTool2 = document.getElementById("tool2").checked;
 	generateTool3 = document.getElementById("tool3").checked;
 	generateTool4 = document.getElementById("tool4").checked;
+*/
 	generateConsumable1 = document.getElementById("consumable1").checked;
 	generateConsumable2 = document.getElementById("consumable2").checked;
 	generateConsumable3 = document.getElementById("consumable3").checked;
@@ -505,14 +474,53 @@ function filterToolFamilyCandidates(){
 	return candidates;
 }
 
+function isDuplicate(array) {
+	return (array.filter((item, index) => array.indexOf(item) != index)).length != 0;
+}
+
+// XXX: needs rename? (hp)
+function isDefined(position, temp) {
+	return (position != null && position.name == temp.name);
+}
+
+function activateEvents() {
+	var checks = [].slice.call(document.getElementsByTagName("input"))
+	checks = checks.filter(box => box.type == "checkbox");
+	checks.forEach(function(box) {
+		box.addEventListener("change", function(e) {
+			var name = e.target.id.slice(0, -1)+"s";//wtf. (hp)
+			var number = parseInt(e.target.id.slice(-1))
+
+
+			if (e.target.checked) {
+				updateStack[name].push(number);
+			} else {
+				updateStack[name] = updateStack[name].filter(n => n !== number);
+			}
+		})
+	});
+}
+
+function findFamilyOf(searchin, sub, searchfor) {
+	var index = searchin.findIndex(function(family, index) {
+		if ((family[sub].findIndex(function(item, index) {
+			return (item.name == searchfor.name);
+		})) != -1) {
+			return true;
+		} else {
+			return false;
+		}
+	});
+
+	return (index != -1 ? searchin[index] : null);
+}
+
 function filterToolCandidates(family){
 	var candidates = new Array();
 	for (tool of family.tools){
-		if (   (tool1 == null || (tool1 != null && tool1.name != tool.name))
-			&& (tool2 == null || (tool2 != null && tool2.name != tool.name))
-			&& (tool3 == null || (tool3 != null && tool3.name != tool.name))
-			&& (tool4 == null || (tool4 != null && tool4.name != tool.name))
-			) {
+		if (store.tools.every(function(t) {
+			return (t == null || t != null && t.name);
+		})) {
 			candidates.push(tool);
 		}
 	}
@@ -521,19 +529,14 @@ function filterToolCandidates(family){
 
 function isToolUnavailable(candidates){
 	var totalNumberOfTools = 0;
-	var totalNumberOfCandidate = 0; 
-	if (tool1 != null) {
-		totalNumberOfTools = totalNumberOfTools + 1;
-	}
-	if (tool2 != null) {
-		totalNumberOfTools = totalNumberOfTools + 1;
-	}
-	if (tool3 != null) {
-		totalNumberOfTools = totalNumberOfTools + 1;
-	}
-	if (tool4 != null) {
-		totalNumberOfTools = totalNumberOfTools + 1;
-	}
+	var totalNumberOfCandidate = 0;
+
+	store.tools.forEach(function(tool) {
+		if (tool != null) {
+			totalNumberOfTools += 1;
+		}
+	});
+
 	for (family of candidates){
 		for(tool of family.tools){
 			totalNumberOfCandidate = totalNumberOfCandidate + 1;
@@ -623,6 +626,7 @@ function previous(toRoll){
 				for (var i = family.guns.length - 1; i >= 0; i--) {
 					if (found) {
 						gun = family.guns[i];
+					//updateSlots();
 						if (gun.size <= remainingSize) {
 							if (!(gun.dualWield && !allowDualWield)) {
 								if ((weapon1 != null && weapon1.name != gun.name) || weapon1 == null || (weapon1 != null && allowDuplicateWeapons)) {
@@ -643,193 +647,34 @@ function previous(toRoll){
 			}
 		}
 	}
-	if (toRoll == "tool1") {
-		if (generateTool1) {
-			for(family of toolFamilies) {
-				found = false;
-				for (var i = family.tools.length - 1; i >= 0; i--) {
-					tool = family.tools[i]
-					if (found) {
-						if(	   (tool2 == null || (tool2 != null && tool2.name != tool.name))
-							&& (tool3 == null || (tool3 != null && tool3.name != tool.name))
-							&& (tool4 == null || (tool4 != null && tool4.name != tool.name))) {
-							tool1 = tool;
-							break;
-						}
-					}
-					if (tool1 != null && tool.name == tool1.name) {
-						found = true;
-					}
-				}
-				if (found){
-					document.getElementById("t1").src = tool1.image;
-					document.getElementById("t1").alt = tool1.name;
-					break;
-				}
-			}
-		}
+
+	if (toRoll.substring(0, 4) == "tool") {
+		var tnum = parseInt(toRoll.substring(4))-1;
+
+		var fam   = findFamilyOf(toolFamilies, "tools", store.tools[tnum]);
+		var infam = fam.tools.findIndex(function(tool, index) {
+			return tool.name = store.tools[tnum].name;
+		});
+
+		//TODO: CHECK FOR DUPLICATES, YOU IDIOT. (hp)
+		store.tools[tnum] = (infam > 0 ? fam.tools[infam-1] : fam.tools[infam]);
+		updateSlots(false);
+		
 	}
-	if (toRoll == "tool2") {
-		if (generateTool2) {
-			for(family of toolFamilies) {
-				found = false;
-				for (var i = family.tools.length - 1; i >= 0; i--) {
-					tool = family.tools[i]
-					if (found) {
-						if(	   (tool1 == null || (tool1 != null && tool1.name != tool.name))
-							&& (tool3 == null || (tool3 != null && tool3.name != tool.name))
-							&& (tool4 == null || (tool4 != null && tool4.name != tool.name))) {
-							tool2 = tool;
-							break;
-						}
-					}
-					if (tool2 != null && tool.name == tool2.name) {
-						found = true;
-					}
-				}
-				if (found){
-					document.getElementById("t2").src = tool2.image;
-					document.getElementById("t2").alt = tool2.name;
-					break;
-				}
-			}
-		}
-	}
-	if (toRoll == "tool3") {
-		if (generateTool3) {
-			for(family of toolFamilies) {
-				found = false;
-				for (var i = family.tools.length - 1; i >= 0; i--) {
-					tool = family.tools[i]
-					if (found) {
-						if(	   (tool2 == null || (tool2 != null && tool2.name != tool.name))
-							&& (tool1 == null || (tool1 != null && tool1.name != tool.name))
-							&& (tool4 == null || (tool4 != null && tool4.name != tool.name))) {
-							tool3 = tool;
-							break;
-						}
-					}
-					if (tool3 != null && tool.name == tool3.name) {
-						found = true;
-					}
-				}
-				if (found){
-					document.getElementById("t3").src = tool3.image;
-					document.getElementById("t3").alt = tool3.name;
-					break;
-				}
-			}
-		}
-	}
-	if (toRoll == "tool4") {
-		if (generateTool4) {
-			for(family of toolFamilies) {
-				found = false;
-				for (var i = family.tools.length - 1; i >= 0; i--) {
-					tool = family.tools[i]
-					if (found) {
-						if(	   (tool2 == null || (tool2 != null && tool2.name != tool.name))
-							&& (tool3 == null || (tool3 != null && tool3.name != tool.name))
-							&& (tool1 == null || (tool1 != null && tool1.name != tool.name))) {
-							tool4 = tool;
-							break;
-						}
-					}
-					if (tool4 != null && tool.name == tool4.name) {
-						found = true;
-					}
-				}
-				if (found){
-					document.getElementById("t4").src = tool4.image;
-					document.getElementById("t4").alt = tool4.name;
-					break;
-				}
-			}
-		}
-	}
-	if (toRoll == "consumable1") {
-		if (generateConsumable1) {
-			for(family of consumableFamilies) {
-				found = false;
-				for (var i = family.consumables.length - 1; i >= 0; i--) {
-					consumable = family.consumables[i];
-					if (found) {
-						consumable1 = consumable;
-						break;
-					}
-					if (consumable1 != null && consumable.name == consumable1.name) {
-						found = true;
-					}
-				}
-				if (found) {
-					document.getElementById("c1").src = consumable1.image;
-					document.getElementById("c1").alt = consumable1.name;
-				}
-			}
-		}
-	}
-	if (toRoll == "consumable2") {
-		if (generateConsumable2) {
-			for(family of consumableFamilies) {
-				found = false;
-				for (var i = family.consumables.length - 1; i >= 0; i--) {
-					consumable = family.consumables[i];
-					if (found) {
-						consumable2 = consumable;
-						break;
-					}
-					if (consumable2 != null && consumable.name == consumable2.name) {
-						found = true;
-					}
-				}
-				if (found) {
-					document.getElementById("c2").src = consumable2.image;
-					document.getElementById("c2").alt = consumable2.name;
-				}
-			}
-		}
-	}
-	if (toRoll == "consumable3") {
-		if (generateConsumable3) {
-			for(family of consumableFamilies) {
-				found = false;
-				for (var i = family.consumables.length - 1; i >= 0; i--) {
-					consumable = family.consumables[i];
-					if (found) {
-						consumable3 = consumable;
-						break;
-					}
-					if (consumable3 != null && consumable.name == consumable3.name) {
-						found = true;
-					}
-				}
-				if (found) {
-					document.getElementById("c3").src = consumable3.image;
-					document.getElementById("c3").alt = consumable3.name;
-				}
-			}
-		}
-	}
-	if (toRoll == "consumable4") {
-		if (generateConsumable4) {
-			for(family of consumableFamilies) {
-				found = false;
-				for (var i = family.consumables.length - 1; i >= 0; i--) {
-					consumable = family.consumables[i];
-					if (found) {
-						consumable4 = consumable;
-						break;
-					}
-					if (consumable4 != null && consumable.name == consumable4.name) {
-						found = true;
-					}
-				}
-				if (found) {
-					document.getElementById("c4").src = consumable4.image;
-					document.getElementById("c4").alt = consumable4.name;
-				}
-			}
-		}
+
+	if (toRoll.substring(0, 4) == "cons") {
+		var cnum = parseInt(toRoll.substring(10))-1;
+		console.log(cnum);
+
+		var fam   = findFamilyOf(consumableFamilies, "consumables", store.consumables[cnum]);
+		var infam = fam.consumables.findIndex(function(consumable, index) {
+			return consumable.name = store.consumables[cnum].name;
+		});
+
+		//TODO: CHECK FOR DUPLICATES, YOU IDIOT. (hp)
+		store.consumables[cnum] = (infam > 0 ? fam.consumables[infam-1] : fam.consumables[infam]);
+		updateSlots(false);
+		
 	}
 }
 
@@ -861,68 +706,6 @@ function reroll(toRoll){
 			document.getElementById("w2").alt = weapon2.name;
 		}
 	}
-	if (toRoll == "tool1") {
-		if (generateTool1) {
-			tool1 = null;
-			tool1 = generateTool();
-			document.getElementById("t1").src = tool1.image;
-			document.getElementById("t1").alt = tool1.name;
-		}
-	}
-	if (toRoll == "tool2") {
-		if (generateTool2) {
-			tool2 = null;
-			tool2 = generateTool();
-			document.getElementById("t2").src = tool2.image;
-			document.getElementById("t2").alt = tool2.name;
-		}
-	}
-	if (toRoll == "tool3") {
-		if (generateTool3) {
-			tool3 = null;
-			tool3 = generateTool();
-			document.getElementById("t3").src = tool3.image;
-			document.getElementById("t3").alt = tool3.name;
-		}
-	}
-	if (toRoll == "tool4") {
-		if (generateTool4) {	
-			tool4 = null;
-			tool4 = generateTool();
-			document.getElementById("t4").src = tool4.image;
-			document.getElementById("t4").alt = tool4.name;
-		}
-	}
-	if (toRoll == "consumable1") {
-		if (generateConsumable1){
-			consumable1 = null;
-			consumable1 = generateConsumable();
-			document.getElementById("c1").src = consumable1.image;
-			document.getElementById("c1").alt = consumable1.name;
-		}	
-	}
-	if (toRoll == "consumable2") {
-		if (generateConsumable2){
-			consumable2 = null;
-			consumable2 = generateConsumable();
-			document.getElementById("c2").src = consumable2.image;
-			document.getElementById("c2").alt = consumable2.name;
-		}
-	}
-	if (toRoll == "consumable3") {
-		if (generateConsumable3){
-			consumable3 = null;
-			consumable3 = generateConsumable();
-			document.getElementById("c3").src = consumable3.image;
-			document.getElementById("c3").alt = consumable3.name;
-		}
-	}
-	if (toRoll == "consumable4") {
-		if (generateConsumable4){
-			consumable4 = null;
-			consumable4 = generateConsumable();
-			document.getElementById("c4").src = consumable4.image;
-			document.getElementById("c4").alt = consumable4.name;
-		}
-	}
+
+	updateSlots(true);
 }
