@@ -10,6 +10,7 @@
   <script src="js/script.js"></script>
   <script>
     window.onload = function() {
+      setParameterValues();
       activateEvents();
     }
   </script>
@@ -50,7 +51,7 @@
           <label for="quartermaster">Quartermaster</label>
         </div>
         <br><br>
-        <button type="submit" class="red-button">Generate Loadout</button>
+        <button id="generate_loadout" type="submit" class="red-button">Generate Loadout</button>
         <br><br>
       </form>
         <div class="loadout">

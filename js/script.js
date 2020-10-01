@@ -14,11 +14,16 @@ var weapon2 = null;
 // store the actual values of tools/consumables
 var store = {
 	tools: [null, null, null, null],
-	consumables: [null, null, null, null]
+	consumables: [null, null, null, null],
+	weapons: [null, null]
 };
 
 // store which slots need updating
-var updateStack = {tools: [], consumables: []};
+var updateStack = {
+	tools: [],
+	consumables: [],
+	weapons: [] /* not used, but needed for checkboxes */
+};
 
 var remainingSize = 0;
 
@@ -282,13 +287,22 @@ var consumableFamilies = new Array(
 	)
 );
 
-// update Tool and Consumable Slots
-function updateSlots(random) {
-	Object.keys(updateStack).forEach(function(key) {
-		updateStack[key].forEach(function(num) {
-			var e = document.getElementById(key.substr(0,1)+num);
+/* TODO: Maybe add duplicates array support, so we can randomize more slots with
+         duplicats and no duplicates? (currently only support yes/no for all slots
+*/
+function randomizeSlots(slots, duplicates) {
+	var randSlots = [];
 
-			if (random) {
+	if (slots == null) {
+		randSlots = Object.keys(updateStack);
+	} else {
+		randSlots.push(slots);
+	}
+	console.log(randSlots);
+
+	randSlots.forEach(function(key) {
+		updateStack[key].forEach(function(num) {
+			do {
 				// TODO: Make generate more general to avoid the switch
 				switch (key) {
 					case "tools":
@@ -298,10 +312,20 @@ function updateSlots(random) {
 						store[key][(num-1)] = generateConsumable();
 						break;
 				}
-				
+			} while (!duplicates && isDuplicate(store[key]));
+		})
+	});
+}
+
+// update Tool and Consumable Slots
+function updateSlots(random) {
+	Object.keys(updateStack).forEach(function(key) {
+		updateStack[key].forEach(function(num) {
+			var e = document.getElementById(key.substr(0,1)+num);
+			if (store[key][(num-1)] !== null) {
+				e.src = store[key][(num-1)].image;
+				e.alt = store[key][(num-1)].name;
 			}
-			e.src = store[key][(num-1)].image;
-			e.alt = store[key][(num-1)].name;
 		})
 	});
 }
@@ -313,16 +337,6 @@ function generate() {
 		remainingSize = maxSize;
 		weapon1 = null;
 		weapon2 = null;
-/*
-		tool1 = null;
-		tool2 = null;
-		tool3 = null;
-		tool4 = null;
-*/
-		consumable1 = null;
-		consumable2 = null;
-		consumable3 = null;
-		consumable4 = null;
 		if (generateWeapon1) {
 			weapon1 = generateWeapon();
 			remainingSize = remainingSize - weapon1.size;
@@ -392,16 +406,18 @@ function setMaxSize() {
 function setParameterValues() {
 	generateWeapon1 = document.getElementById("weapon1").checked;
 	generateWeapon2 = document.getElementById("weapon2").checked;
-/*
-	generateTool1 = document.getElementById("tool1").checked;
-	generateTool2 = document.getElementById("tool2").checked;
-	generateTool3 = document.getElementById("tool3").checked;
-	generateTool4 = document.getElementById("tool4").checked;
-*/
-	generateConsumable1 = document.getElementById("consumable1").checked;
-	generateConsumable2 = document.getElementById("consumable2").checked;
-	generateConsumable3 = document.getElementById("consumable3").checked;
-	generateConsumable4 = document.getElementById("consumable4").checked;
+
+	var checks = [].slice.call(document.getElementsByTagName("input"))
+			.filter(i => i.type == "checkbox" && /.*\d+$/.test(i.id));
+	checks.forEach(function(box) {
+		if (box.checked) {
+			// maybe introduce a dataset field? (hp)
+			var name = box.id.slice(0, -1)+"s";//wtf. (hp)
+			console.log(name);
+			updateStack[name].push(parseInt(box.id.slice(-1)));
+		}
+	});
+
 	allowDualWield = document.getElementById("dual").checked
 	allowQuatermaster = document.getElementById("quartermaster").checked
 	allowDuplicateWeapons = document.getElementById("dup").checked
@@ -475,7 +491,7 @@ function filterToolFamilyCandidates(){
 }
 
 function isDuplicate(array) {
-	return (array.filter((item, index) => array.indexOf(item) != index)).length != 0;
+	return (array.filter((item, index) => item != null && array.indexOf(item) != index)).length != 0;
 }
 
 // XXX: needs rename? (hp)
@@ -484,7 +500,7 @@ function isDefined(position, temp) {
 }
 
 function activateEvents() {
-	var checks = [].slice.call(document.getElementsByTagName("input"))
+	var checks = [].slice.call(document.getElementsByTagName("input"));
 	checks = checks.filter(box => box.type == "checkbox");
 	checks.forEach(function(box) {
 		box.addEventListener("change", function(e) {
@@ -496,6 +512,20 @@ function activateEvents() {
 				updateStack[name].push(number);
 			} else {
 				updateStack[name] = updateStack[name].filter(n => n !== number);
+			}
+		})
+	});
+
+	var buttons = [].slice.call(document.getElementsByTagName("button"))
+			.filter(btn => btn.type == "submit");
+	buttons.forEach(function(btn) {
+		btn.addEventListener("click", function(e) {
+			// TODO: Fix this for more buttons. (hp)
+			switch (e.target.id) {
+				case "generate_loadout":
+					randomizeSlots("tools", false);
+					randomizeSlots("consumables", true);
+				break;
 			}
 		})
 	});
@@ -650,19 +680,23 @@ function previous(toRoll){
 
 	if (toRoll.substring(0, 4) == "tool") {
 		var tnum = parseInt(toRoll.substring(4))-1;
+		var prev = store.tools[tnum];
 
 		var fam   = findFamilyOf(toolFamilies, "tools", store.tools[tnum]);
 		var infam = fam.tools.findIndex(function(tool, index) {
 			return tool.name = store.tools[tnum].name;
 		});
 
-		//TODO: CHECK FOR DUPLICATES, YOU IDIOT. (hp)
 		store.tools[tnum] = (infam > 0 ? fam.tools[infam-1] : fam.tools[infam]);
+
+		//TODO: Maybe skip a tier? (hp)
+		if (isDuplicate(store.tools)) { store.tools[tnum] = prev; }
+
 		updateSlots(false);
 		
 	}
 
-	if (toRoll.substring(0, 4) == "cons") {
+	if (toRoll.substring(0, 10) == "consumable") {
 		var cnum = parseInt(toRoll.substring(10))-1;
 		console.log(cnum);
 
@@ -674,7 +708,6 @@ function previous(toRoll){
 		//TODO: CHECK FOR DUPLICATES, YOU IDIOT. (hp)
 		store.consumables[cnum] = (infam > 0 ? fam.consumables[infam-1] : fam.consumables[infam]);
 		updateSlots(false);
-		
 	}
 }
 
