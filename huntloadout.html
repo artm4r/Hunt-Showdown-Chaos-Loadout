@@ -8,6 +8,12 @@
   <meta name="author" content="RichardCQC">
   <link rel="stylesheet" href="css/style.css">
   <script src="js/script.js"></script>
+  <script>
+    window.onload = function() {
+      setParameterValues();
+      activateEvents();
+    }
+  </script>
   <link rel="icon" 
       type="image/png" 
       href="img/navicon.png">
@@ -19,7 +25,7 @@
       <img src="img/banner.jpg" alt="Hunt Showdown Loadout Generator"/>
     </div>
   	<div class="body-content">
-      <form onsubmit="generate();return false">
+      <form onsubmit="return false">
         <label for="rank">Bloodline Rank:</label>
         <input type="number" id="rank" name="rank" min="1" max="100" value="100">
         <br><br>
@@ -45,7 +51,7 @@
           <label for="quartermaster">Quartermaster</label>
         </div>
         <br><br>
-        <button type="submit" class="red-button">Generate Loadout</button>
+        <button id="generate_loadout" type="submit" class="red-button">Generate Loadout</button>
         <br><br>
       </form>
         <div class="loadout">
@@ -70,25 +76,25 @@
           <label>Tools</label>
           <li>
             <div>
-              <input type="checkbox" id="tool1" checked />
+              <input type="checkbox" class="tool" id="tool1" checked />
               <label for="tool1"><img id="t1" src="img/emptySmall.jpg"/></label> 
               <img class="hover1" src="img/reroll.jpg" onclick="reroll('tool1')" />
               <img class="hover2" src="img/previous.jpg" onclick="previous('tool1')" />
             </div>
             <div>
-              <input type="checkbox" id="tool2" checked />
+              <input type="checkbox" class="tool" id="tool2" checked />
               <label for="tool2"><img id="t2" src="img/emptySmall.jpg"/></label> 
               <img class="hover1" src="img/reroll.jpg" onclick="reroll('tool2')" />
               <img class="hover2" src="img/previous.jpg" onclick="previous('tool2')" />
             </div>
             <div>
-              <input type="checkbox" id="tool3" checked />
+              <input type="checkbox" class="tool" id="tool3" checked />
               <label for="tool3"><img id="t3" src="img/emptySmall.jpg"/></label>
               <img class="hover1" src="img/reroll.jpg" onclick="reroll('tool3')" />
               <img class="hover2" src="img/previous.jpg" onclick="previous('tool3')" />
             </div>
             <div>
-              <input type="checkbox" id="tool4" checked />
+              <input type="checkbox" class="tool" id="tool4" checked />
               <label for="tool4"><img id="t4" src="img/emptySmall.jpg"/></label> 
               <img class="hover1" src="img/reroll.jpg" onclick="reroll('tool4')" />
               <img class="hover2" src="img/previous.jpg" onclick="previous('tool4')" />
