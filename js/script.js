@@ -316,6 +316,46 @@ function updateSlots() {
 	}});
 }
 
+async function generateLoadout(){
+	disableFormElements();
+	var intervalLong = 300;
+	var intervalShort= 150;
+	for (i = 0; i < 3; i++) {
+		generate();
+		await sleep (300);
+	}
+
+	for (i = 0; i < 15; i++) {
+		generate();
+		await sleep (150);
+	}
+
+	for (i = 0; i < 2; i++) {
+		generate();
+		await sleep (300);
+	}
+
+	await sleep (150);
+	generate();
+	enableFormElements();
+}
+
+function disableFormElements(){
+	document.getElementById("generate_loadout").disabled = true;
+	document.getElementById("dual").disabled = true;
+	document.getElementById("dup").disabled = true;
+	document.getElementById("quartermaster").disabled = true;
+	document.getElementById("rank").disabled = true;
+}
+
+function enableFormElements(){
+	document.getElementById("generate_loadout").disabled = false;
+	document.getElementById("dual").disabled = false;
+	document.getElementById("dup").disabled = false;
+	document.getElementById("quartermaster").disabled = false;
+	document.getElementById("rank").disabled = false;
+}
+
 function generate() {
 	setParameterValues();
 	setMaxSize();
@@ -522,7 +562,7 @@ function activateEvents() {
 		btn.addEventListener("click", function(e) {
 			switch (e.target.id) {
 				case "generate_loadout":
-					generate();
+					generateLoadout();
 				break;
 			}
 		})
@@ -752,3 +792,8 @@ function reroll(toRoll){
 
 	updateSlots();
 }
+
+function sleep(ms) {
+	return new Promise(resolve => setTimeout(resolve, ms));
+  }
+  

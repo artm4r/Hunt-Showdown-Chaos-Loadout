@@ -109,6 +109,16 @@ button.red-button:active {
     border: 1px solid #8B0000;
 }
 
+button:disabled {
+  background: #303030;
+  border: none;
+}
+
+button:disabled:hover{
+  background: #303030;
+  border: none;
+}
+
 div.option {
 	display: inline-block;
 	width: 200px;
