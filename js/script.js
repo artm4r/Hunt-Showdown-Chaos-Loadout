@@ -34,6 +34,7 @@ var gunFamilies = new Array(
 			new Gun(3, false,"Winfield M1873C Silencer", 55, "img/winfieldc_sup.jpg"),
 			new Gun(3, false, "Winfield M1873C Marksman", 56, "img/winfieldc_mark.jpg"),
 			new Gun(2, false, "Winfield M1873C Vandal", 35, "img/winfieldc_van.jpg"),
+			new Gun(2, false, "Winfield M1873C Vandal Striker", 39, "img/winfieldc_van_str.jpg"),
 			new Gun(2, false, "Winfield M1873C Vandal Deadeye", 45, "img/winfieldc_van_dead.jpg")
 		)
 	),
