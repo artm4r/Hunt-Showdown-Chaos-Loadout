@@ -6,6 +6,8 @@ var generateWeapon2 = true;
 var allowDualWield = true;
 var allowQuatermaster = false;
 var allowDuplicateWeapons = true;
+var sound = true;
+var animation = true;
 
 //Variables for result
 var weapon1 = null;
@@ -317,27 +319,44 @@ function updateSlots() {
 }
 
 async function generateLoadout(){
-	disableFormElements();
-	var intervalLong = 300;
-	var intervalShort= 150;
-	for (i = 0; i < 3; i++) {
-		generate();
-		await sleep (300);
-	}
-
-	for (i = 0; i < 15; i++) {
-		generate();
+	setParameterValues();
+	if(animation){
+		disableFormElements();
+		var intervalLong = 300;
+		var intervalShort= 150;
+		for (i = 0; i < 3; i++) {
+			playSound("tick");
+			generate();
+			await sleep (300);
+		}
+	
+		for (i = 0; i < 15; i++) {
+			playSound("tick");
+			generate();
+			await sleep (150);
+		}
+	
+		for (i = 0; i < 2; i++) {
+			playSound("tick");
+			generate();
+			await sleep (300);
+		}
+	
 		await sleep (150);
-	}
-
-	for (i = 0; i < 2; i++) {
+		playSound("tick");
+		playSound("found");
 		generate();
-		await sleep (300);
+		enableFormElements();
+	} else {
+		playSound("tick");
+		generate();
 	}
+}
 
-	await sleep (150);
-	generate();
-	enableFormElements();
+function playSound(soundToPlay){
+	if(sound) {
+		document.getElementById(soundToPlay).play();
+	}
 }
 
 function disableFormElements(){
@@ -346,6 +365,8 @@ function disableFormElements(){
 	document.getElementById("dup").disabled = true;
 	document.getElementById("quartermaster").disabled = true;
 	document.getElementById("rank").disabled = true;
+	document.getElementById("sound").disabled = true;
+	document.getElementById("anim").disabled = true;
 }
 
 function enableFormElements(){
@@ -354,6 +375,8 @@ function enableFormElements(){
 	document.getElementById("dup").disabled = false;
 	document.getElementById("quartermaster").disabled = false;
 	document.getElementById("rank").disabled = false;
+	document.getElementById("sound").disabled = false;
+	document.getElementById("anim").disabled = false;
 }
 
 function generate() {
@@ -449,7 +472,7 @@ function setMaxSize() {
 function setParameterValues() {
 	generateWeapon1 = document.getElementById("weapon1").checked;
 	generateWeapon2 = document.getElementById("weapon2").checked;
-
+	clearUpdateStack();
 	var checks = [].slice.call(document.getElementsByTagName("input"))
 			.filter(i => i.type == "checkbox" && /.*\d+$/.test(i.id));
 	checks.forEach(function(box) {
@@ -463,6 +486,8 @@ function setParameterValues() {
 	allowDualWield = document.getElementById("dual").checked
 	allowQuatermaster = document.getElementById("quartermaster").checked
 	allowDuplicateWeapons = document.getElementById("dup").checked
+	sound = document.getElementById("sound").checked
+	animation = document.getElementById("anim").checked
 	rank = document.getElementById("rank").value;
 }
 
@@ -796,4 +821,23 @@ function reroll(toRoll){
 function sleep(ms) {
 	return new Promise(resolve => setTimeout(resolve, ms));
   }
+
+function clearUpdateStack(){
+	updateStack = {
+		tools: [],
+		consumables: [],
+		weapons: [] /* not used, but needed for checkboxes */
+	}
+}
   
+function toggleMenu(){
+	var menu = document.getElementById("menu");
+	var container = document.getElementsByClassName("option-menu")[0];
+	if (menu.style.display === "inline-block"){
+		menu.style.display = "none";
+		container.classList.remove("menu-open");
+	} else {
+		menu.style.display = "inline-block";
+		container.classList.add("menu-open");
+	}
+}

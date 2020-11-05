@@ -154,7 +154,7 @@ img.hover1:hover, img.hover2:hover {
 	display: inline-block;
 }
 
-form .switch {
+.switch {
   position: relative;
   display: inline-block;
   width: 48px;
@@ -162,14 +162,14 @@ form .switch {
 }
 
 /* Hide default HTML checkbox */
-form .switch input {
+.switch input {
   opacity: 0;
   width: 0;
   height: 0;
 }
 
 /* The slider */
-form .slider {
+.slider {
   position: absolute;
   cursor: pointer;
   top: 0;
@@ -181,7 +181,7 @@ form .slider {
   transition: .4s;
 }
 
-form .slider:before {
+.slider:before {
   position: absolute;
   content: "";
   height: 15px;
@@ -193,26 +193,26 @@ form .slider:before {
   transition: .4s;
 }
 
-form input:checked + .slider {
+input:checked + .slider {
   background-color: #8B0000;
 }
 
-form input:focus + .slider {
+input:focus + .slider {
   box-shadow: 0 0 1px #8B0000;
 }
 
-form input:checked + .slider:before {
+input:checked + .slider:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(26px);
 }
 
 /* Rounded sliders */
-form .slider.round {
+.slider.round {
   border-radius: 34px;
 }
 
-form .slider.round:before {
+.slider.round:before {
   border-radius: 50%;
 }
 
@@ -224,4 +224,38 @@ input[type="number"] {
   border-radius: 5px;
   border-width: 0px;
   line-height: 27px;
+}
+
+div.menu-open{
+  border-top-right-radius: 0%       !important;
+  border-bottom-right-radius: 0%    !important;
+}
+
+div.option-menu {
+  position: absolute;
+  text-align: left;
+  padding: 3px;
+  top: 157px;
+  background-color: #242424 ;
+  border-top-right-radius: 0%;
+  border-bottom-right-radius: 50%;
+  min-width: 25px;
+}
+
+#nav-toggle {
+  cursor: pointer;
+}
+
+#menu{
+  display: none;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
 }
