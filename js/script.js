@@ -15,7 +15,7 @@ var weapon2 = null;
 var store = {
 	tools: [null, null, null, null],
 	consumables: [null, null, null, null],
-	weapons: [null, null]
+	weapon: [null, null]
 };
 
 // store which slots need updating
@@ -287,76 +287,78 @@ var consumableFamilies = new Array(
 	)
 );
 
-/* TODO: Maybe add duplicates array support, so we can randomize more slots with
-         duplicats and no duplicates? (currently only support yes/no for all slots
-*/
-function randomizeSlots(slots, duplicates) {
-	var randSlots = [];
-
-	if (slots == null) {
-		randSlots = Object.keys(updateStack);
-	} else {
-		randSlots.push(slots);
-	}
-	console.log(randSlots);
-
-	randSlots.forEach(function(key) {
+function randomizeSlots() {
+	Object.keys(updateStack).forEach(function(key) {
 		updateStack[key].forEach(function(num) {
-			do {
-				// TODO: Make generate more general to avoid the switch
-				switch (key) {
-					case "tools":
-						store[key][(num-1)] = generateTool();
-						break;
-					case "consumables":
-						store[key][(num-1)] = generateConsumable();
-						break;
-				}
-			} while (!duplicates && isDuplicate(store[key]));
+			switch (key) {
+				case "tools":
+					store[key][(num-1)] = generateTool();
+					break;
+				case "consumables":
+					store[key][(num-1)] = generateConsumable();
+					break;
+			}
 		})
 	});
 }
 
-// update Tool and Consumable Slots
-function updateSlots(random) {
+function updateSlots() {
 	Object.keys(updateStack).forEach(function(key) {
+		if(key != "weapons"){
 		updateStack[key].forEach(function(num) {
 			var e = document.getElementById(key.substr(0,1)+num);
-			if (store[key][(num-1)] !== null) {
+			if (store[key][(num-1)] != null) {
 				e.src = store[key][(num-1)].image;
 				e.alt = store[key][(num-1)].name;
 			}
 		})
-	});
+	}});
 }
 
 function generate() {
 	setParameterValues();
 	setMaxSize();
 	if (rank <= 100 && rank >= 1) {
-		remainingSize = maxSize;
-		weapon1 = null;
-		weapon2 = null;
+		emptyStore()
+		updateRemainingSize();
 		if (generateWeapon1) {
 			weapon1 = generateWeapon();
-			remainingSize = remainingSize - weapon1.size;
+			updateRemainingSize();
 			document.getElementById("w1").src = weapon1.image;
 			document.getElementById("w1").alt = weapon1.name;
-		} else{
-			document.getElementById("w1").src = "img/emptyLarge.jpg";
-		}
+		} 
 		if (generateWeapon2) {
 			weapon2 = generateWeapon();
-			remainingSize = remainingSize - weapon2.size;
+			updateRemainingSize();
 			document.getElementById("w2").src = weapon2.image;
 			document.getElementById("w2").alt = weapon2.name;
-		} else{
-			document.getElementById("w2").src = "img/emptySmall.jpg";
 		}
-
-		updateSlots(true);
-
+		randomizeSlots();
+		updateSlots();
 	}
+}
+
+function updateRemainingSize(){
+	remainingSize = maxSize;
+	if(weapon1 != null){
+		remainingSize = remainingSize - weapon1.size;
+	}
+	if(weapon2 != null){
+		remainingSize = remainingSize - weapon2.size;
+	}
+}
+
+function emptyStore() {
+	if(weapon1 != null && generateWeapon1){
+		weapon1 = null;
+	}
+	if(weapon2 != null && generateWeapon2){
+		weapon2 = null;
+	}
+	store = {
+		tools: [null, null, null, null],
+		consumables: [null, null, null, null]
+	};
 }
 
 function GunFamily(rank, minimumSize, guns){
@@ -413,7 +415,6 @@ function setParameterValues() {
 		if (box.checked) {
 			// maybe introduce a dataset field? (hp)
 			var name = box.id.slice(0, -1)+"s";//wtf. (hp)
-			console.log(name);
 			updateStack[name].push(parseInt(box.id.slice(-1)));
 		}
 	});
@@ -476,6 +477,9 @@ function generateTool() {
 		var randomFamily = candidates[getRandomInt(candidates.length)];
 		var toolCandidates = filterToolCandidates(randomFamily);
 		tool = toolCandidates[getRandomInt(toolCandidates.length)];
+		if (store.tools.includes(tool)){
+			tool = null;
+		}
 	}
 	return tool;
 }
@@ -492,11 +496,6 @@ function filterToolFamilyCandidates(){
 
 function isDuplicate(array) {
 	return (array.filter((item, index) => item != null && array.indexOf(item) != index)).length != 0;
-}
-
-// XXX: needs rename? (hp)
-function isDefined(position, temp) {
-	return (position != null && position.name == temp.name);
 }
 
 function activateEvents() {
@@ -520,11 +519,9 @@ function activateEvents() {
 			.filter(btn => btn.type == "submit");
 	buttons.forEach(function(btn) {
 		btn.addEventListener("click", function(e) {
-			// TODO: Fix this for more buttons. (hp)
 			switch (e.target.id) {
 				case "generate_loadout":
-					randomizeSlots("tools", false);
-					randomizeSlots("consumables", true);
+					generate();
 				break;
 			}
 		})
@@ -656,7 +653,6 @@ function previous(toRoll){
 				for (var i = family.guns.length - 1; i >= 0; i--) {
 					if (found) {
 						gun = family.guns[i];
-					//updateSlots();
 						if (gun.size <= remainingSize) {
 							if (!(gun.dualWield && !allowDualWield)) {
 								if ((weapon1 != null && weapon1.name != gun.name) || weapon1 == null || (weapon1 != null && allowDuplicateWeapons)) {
@@ -682,32 +678,30 @@ function previous(toRoll){
 		var tnum = parseInt(toRoll.substring(4))-1;
 		var prev = store.tools[tnum];
 
-		var fam   = findFamilyOf(toolFamilies, "tools", store.tools[tnum]);
-		var infam = fam.tools.findIndex(function(tool, index) {
-			return tool.name = store.tools[tnum].name;
-		});
+		var fam = findFamilyOf(toolFamilies, "tools", store.tools[tnum]);
+		var toolIndex = fam.tools.findIndex((t) => t.name == store.tools[tnum].name);
+		var newTool = prev;
 
-		store.tools[tnum] = (infam > 0 ? fam.tools[infam-1] : fam.tools[infam]);
-
-		//TODO: Maybe skip a tier? (hp)
-		if (isDuplicate(store.tools)) { store.tools[tnum] = prev; }
-
-		updateSlots(false);
+		while(toolIndex > 0 && newTool == prev){
+			newTool = fam.tools[--toolIndex];
+			if (store.tools.includes(newTool)){
+				newTool = prev;
+			}
+		}
+		
+		store.tools[tnum] = newTool;
+		updateSlots();
 		
 	}
 
 	if (toRoll.substring(0, 10) == "consumable") {
 		var cnum = parseInt(toRoll.substring(10))-1;
-		console.log(cnum);
 
 		var fam   = findFamilyOf(consumableFamilies, "consumables", store.consumables[cnum]);
-		var infam = fam.consumables.findIndex(function(consumable, index) {
-			return consumable.name = store.consumables[cnum].name;
-		});
-
-		//TODO: CHECK FOR DUPLICATES, YOU IDIOT. (hp)
-		store.consumables[cnum] = (infam > 0 ? fam.consumables[infam-1] : fam.consumables[infam]);
-		updateSlots(false);
+		var consumableIndex = fam.consumables.findIndex((c) => c.name == store.consumables[cnum].name);
+		
+		store.consumables[cnum] = (consumableIndex > 0 ? fam.consumables[consumableIndex-1] : fam.consumables[consumableIndex]);
+		updateSlots();
 	}
 }
 
@@ -740,5 +734,20 @@ function reroll(toRoll){
 		}
 	}
 
-	updateSlots(true);
+	if (toRoll.substring(0, 4) == "tool") {
+		var tnum = parseInt(toRoll.substring(4))-1;
+		var prev = store.tools[tnum]
+		while(store.tools[tnum] == prev){
+			store.tools[tnum] = null;
+			store.tools[tnum] = generateTool();
+		}
+	}
+
+	if (toRoll.substring(0, 10) == "consumable") {
+		var cnum = parseInt(toRoll.substring(10))-1;
+		store.consumables[cnum] = null;
+		store.consumables[cnum] = generateConsumable();
+	}
+
+	updateSlots();
 }
