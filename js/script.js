@@ -399,6 +399,7 @@ function generate() {
 		}
 		randomizeSlots();
 		updateSlots();
+		updateLoadoutPrice();
 	}
 }
 
@@ -769,6 +770,8 @@ function previous(toRoll){
 		store.consumables[cnum] = (consumableIndex > 0 ? fam.consumables[consumableIndex-1] : fam.consumables[consumableIndex]);
 		updateSlots();
 	}
+
+	updateLoadoutPrice();
 }
 
 function reroll(toRoll){
@@ -816,6 +819,7 @@ function reroll(toRoll){
 	}
 
 	updateSlots();
+	updateLoadoutPrice();
 }
 
 function sleep(ms) {
@@ -840,4 +844,29 @@ function toggleMenu(){
 		menu.style.display = "inline-block";
 		container.classList.add("menu-open");
 	}
+}
+
+function updateLoadoutPrice(){
+	var container = document.getElementById("under");
+	if (container.style.display !== "block"){
+		container.style.display = "block";
+	}
+	var price = 0;
+	if(weapon1 != null){
+		price += weapon1.price;
+	}
+	if(weapon2 != null){
+		price += weapon2.price;
+	}
+	store.tools.forEach(t => {
+		if(t != null){
+			price += t.price
+		}
+	})
+	store.consumables.forEach(t => {
+		if(t != null){
+			price += t.price
+		}
+	})
+	document.getElementById("priceTotal").innerText = price;
 }
