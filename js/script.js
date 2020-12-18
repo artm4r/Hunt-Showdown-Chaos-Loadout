@@ -67,11 +67,12 @@ var gunFamilies = new Array(
 			new Gun(3, false, "Sparks LRR Sniper", 199, "img/sparks_snip.jpg")
 		)
 	),
-	new GunFamily(42, 3, new Array(
+	new GunFamily(20, 3, new Array(
 			new Gun(3, false, "Winfield M1873", 75, "img/winfield.jpg"),
 			new Gun(3, false, "Winfield M1873 Aperture", 80, "img/winfield_ap.jpg"),
 			new Gun(3, false, "Winfield M1873 Talon", 100, "img/winfield_tal.jpg"),
-			new Gun(3, false, "Winfield M1873 Swift", 128, "img/winfield_swi.jpg")
+			new Gun(3, false, "Winfield M1873 Swift", 128, "img/winfield_swi.jpg"),
+			new Gun(3, false, "Winfield M1873 Musket", 137, "img/winfield_mus.jpg")
 		)
 	),
 	new GunFamily(52, 3, new Array(
@@ -127,12 +128,13 @@ var gunFamilies = new Array(
 			new Gun(2, false, "Bornheim No. 3 Match", 224, "img/bornheim_match.jpg")
 			)
 		),
-	new GunFamily(36, 1, new Array(
+	new GunFamily(12, 1, new Array(
 			new Gun(1, false, "Nagant M1895 Officer", 66, "img/officer.jpg"),
 			new Gun(2, true, "Dual Nagant M1895 Officer", 132, "img/officer_dual.jpg"),
 			new Gun(1, false, "Nagant M1895 Officer Brawler", 80, "img/officer_bra.jpg"),
 			new Gun(2, true, "Dual Nagant M1895 Officer Brawler", 160, "img/officer_bra_dual.jpg"),
-			new Gun(3, false, "Nagant M1895 Officer Carbine", 80, "img/officer_carb.jpg")
+			new Gun(3, false, "Nagant M1895 Officer Carbine", 155, "img/officer_carb.jpg"),
+			new Gun(3, false, "Nagant M1895 Officer Carbine Deadeye", 155, "img/officer_carb_dead.jpg")
 		)
 	),
 	new GunFamily(46, 1, new Array(
@@ -172,7 +174,7 @@ var gunFamilies = new Array(
 			new Gun(2, false, "Combat Axe", 5, "img/axe.jpg")
 		)
 	),
-	new GunFamily(12, 1, new Array(
+	new GunFamily(24, 1, new Array(
 			new Gun(1, false, "Machete", 18, "img/machete.jpg")
 		)
 	),
@@ -215,12 +217,12 @@ var toolFamilies = new Array(
 			new Tool("Choke Bomb", 25, "img/choke.jpg")
 		)
 	),
-	new ToolFamily(20, new Array(
+	new ToolFamily(1, new Array(
 			new Tool("Dusters", 15, "img/dusters.jpg"),
 			new Tool("Knuckle Knife", 15, "img/knuckle.jpg")
 		)
 	),
-	new ToolFamily(24, new Array(
+	new ToolFamily(1, new Array(
 			new Tool("Spyglass", 8, "img/spyglass.jpg")
 		)
 	),
