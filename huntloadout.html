@@ -36,7 +36,7 @@
         </div>
         <div class="option">
           <label class="switch">
-            <input type="checkbox" id="anim" name="anim" checked />
+            <input type="checkbox" id="anim" name="anim"  checked />
             <span class="slider round"></span>
           </label>
           <label for="anim">Roll Animation</label>
@@ -70,6 +70,13 @@
         </div>
         <div class="option">
           <label class="switch">
+            <input type="checkbox" id="customammo" name="customammo" checked />
+            <span class="slider round"></span>
+          </label>
+          <label for="customammo">Custom Ammo</label>
+        </div>
+        <div class="option">
+          <label class="switch">
             <input type="checkbox" id="quartermaster" name="quartermaster" />
             <span class="slider round"></span>
           </label>
@@ -88,14 +95,18 @@
               <label class="noselect" for="weapon1"><img id="w1" src="img/emptyLarge.jpg"/></label>
               <img class="hover1" src="img/reroll.jpg" onclick="reroll('weapon1')" />
               <img class="hover2" src="img/previous.jpg" onclick="previous('weapon1')" />
+              <img class="overlay1" id="w1a1" src = "img/ammo/none.png"/>
+              <img class="overlay2" id="w1a2" src = "img/ammo/none.png"/>
             </div>
           </li>
           <li>
             <div>
-              <input type="checkbox" id="weapon2" checked />
+              <input type="checkbox" id="weapon2" checked="true" />
               <label class="noselect" for="weapon2"><img id="w2" src="img/emptySmall.jpg"/></label>
               <img class="hover1" src="img/reroll.jpg" onclick="reroll('weapon2')" />
               <img class="hover2" src="img/previous.jpg" onclick="previous('weapon2')" />
+              <img class="overlay1" id="w2a1" src = "img/ammo/none.png"/>
+              <img class="overlay2" id="w2a2" src = "img/ammo/none.png"/>
             </div>
           </li>
           <label>Tools</label>
@@ -108,7 +119,7 @@
             </div>
             <div>
               <input type="checkbox" class="tool" id="tool2" checked />
-              <label class="noselect" or="tool2"><img id="t2" src="img/emptySmall.jpg"/></label> 
+              <label class="noselect" for="tool2"><img id="t2" src="img/emptySmall.jpg"/></label> 
               <img class="hover1" src="img/reroll.jpg" onclick="reroll('tool2')" />
               <img class="hover2" src="img/previous.jpg" onclick="previous('tool2')" />
             </div>

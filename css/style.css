@@ -146,6 +146,26 @@ img.hover2 {
 	border: 1px solid black;
 }
 
+img.overlay1 {
+	display: inline-block;
+	position: absolute;
+	z-index: 100000;
+  width: 20px;
+  height: 40px;
+	right: 10px;
+	top: 7px;
+}
+
+img.overlay2 {
+	display: inline-block;
+	position: absolute;
+	z-index: 100000;
+  width: 20px;
+  height: 40px;
+	right: 25px;
+	top: 7px;
+}
+
 img.hover1:hover, img.hover2:hover {
 	box-shadow: 0 0 5px white; 
 }
