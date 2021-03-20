@@ -9,6 +9,34 @@ html, body {
 	 background-color: #121212;
 	}
 
+
+.centerover {
+  position: relative;
+  text-align: center;
+  z-index: 1000000;
+}
+
+.centerover  img{
+  max-width: 100%;
+  height: auto;
+}
+
+.linkdiv {
+  margin-top: 50px;
+}
+
+.linkdiv .linkbutton{
+  background: #292929; 
+  border: 1px solid #292929;
+  color: white;
+  line-height: 25px;
+  
+  background-size: 500px 50px;
+  border-radius: 2px;
+  text-shadow: 0 1px 0 #000000;
+  text-decoration: none;
+}
+
 .header {
 	position: absolute;
 	top: 0;
@@ -290,4 +318,17 @@ div#under > label {
   display: inline-block;
   position: relative;
   bottom: 12px;
+}
+
+.linkbutton {
+    background: #8B0000; 
+    border: 1px solid #8B0000;
+    color: white;
+    line-height: 25px;
+    width: 200px;
+    padding: 5px 10px;
+    border-radius: 10px;
+    outline: none;
+    text-shadow: 0 1px 0 #C04131;
+    text-decoration: none;
 }
