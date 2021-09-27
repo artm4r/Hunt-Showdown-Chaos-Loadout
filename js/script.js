@@ -62,16 +62,16 @@ var gunFamilies = new Array(
 		)
 	),
 	new GunFamily(16, 3, new Array(
-			new Gun(3, false, "Martini-Henry IC1", 122, "img/martini.jpg", true, [new AmmoType("img/ammo/l.png",0), new AmmoType("img/ammo/l-i.png", 70), new AmmoType("img/ammo/l-e.png", 120)]),
-			new Gun(3, false, "Martini-Henry IC1 Deadeye", 145, "img/martini_dead.jpg", true, [new AmmoType("img/ammo/l.png",0), new AmmoType("img/ammo/l-i.png", 70), new AmmoType("img/ammo/l-e.png", 120)]),
-			new Gun(3, false, "Martini-Henry IC1 Riposte", 164, "img/martini_rip.jpg", true, [new AmmoType("img/ammo/l.png",0), new AmmoType("img/ammo/l-i.png", 70), new AmmoType("img/ammo/l-e.png", 120)]),
-			new Gun(3, false, "Martini-Henry IC1 Marksman", 173, "img/martini_mark.jpg", true, [new AmmoType("img/ammo/l.png",0), new AmmoType("img/ammo/l-i.png", 70), new AmmoType("img/ammo/l-e.png", 120)])
+			new Gun(3, false, "Martini-Henry IC1", 122, "img/martini.jpg", true, [new AmmoType("img/ammo/l.png",0), new AmmoType("img/ammo/l-i.png", 70), new AmmoType("img/ammo/l-f.png", 90), new AmmoType("img/ammo/l-e.png", 120)]),
+			new Gun(3, false, "Martini-Henry IC1 Deadeye", 145, "img/martini_dead.jpg", true, [new AmmoType("img/ammo/l.png",0), new AmmoType("img/ammo/l-i.png", 70), new AmmoType("img/ammo/l-f.png", 90), new AmmoType("img/ammo/l-e.png", 120)]),
+			new Gun(3, false, "Martini-Henry IC1 Riposte", 164, "img/martini_rip.jpg", true, [new AmmoType("img/ammo/l.png",0), new AmmoType("img/ammo/l-i.png", 70), new AmmoType("img/ammo/l-f.png", 90), new AmmoType("img/ammo/l-e.png", 120)]),
+			new Gun(3, false, "Martini-Henry IC1 Marksman", 173, "img/martini_mark.jpg", true, [new AmmoType("img/ammo/l.png",0), new AmmoType("img/ammo/l-i.png", 70), new AmmoType("img/ammo/l-f.png", 90), new AmmoType("img/ammo/l-e.png", 120)])
 		)
 	),
 	new GunFamily(26, 3, new Array(
-			new Gun(3, false, "Sparks LRR", 130, "img/sparks.jpg", true, [new AmmoType("img/ammo/l.png",0), new AmmoType("img/ammo/l-i.png", 70), new AmmoType("img/ammo/l-p.png", 60)]),
-			new Gun(3, false, "Sparks LRR Silencer", 150, "img/sparks_sup.jpg", true, [new AmmoType("img/ammo/l.png",0), new AmmoType("img/ammo/l-i.png", 70), new AmmoType("img/ammo/l-p.png", 60)]),
-			new Gun(3, false, "Sparks LRR Sniper", 199, "img/sparks_snip.jpg", true, [new AmmoType("img/ammo/l.png",0), new AmmoType("img/ammo/l-i.png", 70), new AmmoType("img/ammo/l-p.png", 60)])
+			new Gun(3, false, "Sparks LRR", 130, "img/sparks.jpg", true, [new AmmoType("img/ammo/l.png",0), new AmmoType("img/ammo/l-i.png", 70), new AmmoType("img/ammo/l-f.png", 90), new AmmoType("img/ammo/l-p.png", 60)]),
+			new Gun(3, false, "Sparks LRR Silencer", 150, "img/sparks_sup.jpg", true, [new AmmoType("img/ammo/l.png",0), new AmmoType("img/ammo/l-i.png", 70), new AmmoType("img/ammo/l-f.png", 90), new AmmoType("img/ammo/l-p.png", 60)]),
+			new Gun(3, false, "Sparks LRR Sniper", 199, "img/sparks_snip.jpg", true, [new AmmoType("img/ammo/l.png",0), new AmmoType("img/ammo/l-i.png", 70), new AmmoType("img/ammo/l-f.png", 90), new AmmoType("img/ammo/l-p.png", 60)])
 		)
 	),
 	new GunFamily(20, 3, new Array(
@@ -89,7 +89,8 @@ var gunFamilies = new Array(
 		)
 	),
 	new GunFamily(58, 3, new Array(
-		new Gun(3, false, "Winfield M1876 Centennial", 397, "img/cent.jpg", false, [new AmmoType("img/ammo/m.png",0), new AmmoType("img/ammo/m-p.png", 45), new AmmoType("img/ammo/m-f.png", 75)]),
+		new Gun(3, false, "Winfield M1876 Centennial", 277, "img/cent.jpg", false, [new AmmoType("img/ammo/m.png",0), new AmmoType("img/ammo/m-p.png", 45), new AmmoType("img/ammo/m-f.png", 75)]),
+		new Gun(3, false, "Winfield M1876 Centennial Sniper", 298, "img/cent_snip.jpg", false, [new AmmoType("img/ammo/m.png",0), new AmmoType("img/ammo/m-p.png", 45), new AmmoType("img/ammo/m-f.png", 75)])
 		)
 	),
 	new GunFamily(72, 2, new Array(
@@ -127,8 +128,8 @@ var gunFamilies = new Array(
 			new Gun(2, true, "Dual Caldwell Conversion Pistol", 52, "img/conversion_dual.jpg", false, [new AmmoType("img/ammo/c.png",0), new AmmoType("img/ammo/c-d.png", 60), new AmmoType("img/ammo/c-f.png", 60)]),
 			new Gun(1, false, "Caldwell Conversion Chain Pistol", 50, "img/conversion_chain.jpg", false, [new AmmoType("img/ammo/c.png",0), new AmmoType("img/ammo/c-d.png", 60), new AmmoType("img/ammo/c-f.png", 60)]),
 			new Gun(2, true, "Dual Caldwell Conversion Chain Pistol", 100, "img/conversion_chain_dual.jpg", false, [new AmmoType("img/ammo/c.png",0), new AmmoType("img/ammo/c-d.png", 60), new AmmoType("img/ammo/c-f.png", 60)]),
-			new Gun(1, false, "Caldwell Conversion Upercut", 275, "img/conversion_up.jpg", false, [new AmmoType("img/ammo/l.png",0), new AmmoType("img/ammo/c-i.png", 70)]),
-			new Gun(2, true, "Dual Caldwell Conversion Upercut", 550, "img/conversion_up_dual.jpg", false, [new AmmoType("img/ammo/l.png",0), new AmmoType("img/ammo/c-i.png", 70)])
+			new Gun(1, false, "Caldwell Conversion Upercut", 275, "img/conversion_up.jpg", false, [new AmmoType("img/ammo/l.png",0), new AmmoType("img/ammo/c-i.png", 70), new AmmoType("img/ammo/l-e.png", 120)]),
+			new Gun(2, true, "Dual Caldwell Conversion Upercut", 550, "img/conversion_up_dual.jpg", false, [new AmmoType("img/ammo/l.png",0), new AmmoType("img/ammo/c-i.png", 70), new AmmoType("img/ammo/l-e.png", 120)])
 		)
 	),
 	new GunFamily(30, 1, new Array(
@@ -167,23 +168,23 @@ var gunFamilies = new Array(
 		)
 	),
 	new GunFamily(18, 2, new Array(
-			new Gun(3, false, "Caldwell Rival 78", 100, "img/rival.jpg", false, [new AmmoType("img/ammo/s.png", 0), new AmmoType("img/ammo/s-f.png", 45), new AmmoType("img/ammo/s-sl.png", 150)]),
-			new Gun(2, false, "Caldwell Rival 78 Handcannon", 85, "img/rival_hand.jpg", false, [new AmmoType("img/ammo/s.png", 0), new AmmoType("img/ammo/s-f.png", 45), new AmmoType("img/ammo/s-sl.png", 150)])
+			new Gun(3, false, "Caldwell Rival 78", 100, "img/rival.jpg", false, [new AmmoType("img/ammo/s.png", 0), new AmmoType("img/ammo/s-p.png", 25), new AmmoType("img/ammo/s-f.png", 45), new AmmoType("img/ammo/s-sl.png", 150)]),
+			new Gun(2, false, "Caldwell Rival 78 Handcannon", 85, "img/rival_hand.jpg", false, [new AmmoType("img/ammo/s.png", 0), new AmmoType("img/ammo/s-p.png", 25), new AmmoType("img/ammo/s-f.png", 45), new AmmoType("img/ammo/s-sl.png", 150)])
 		)
 	),
 	new GunFamily(58, 2, new Array(
-			new Gun(3, false, "Specter 1882", 188, "img/specter.jpg", false, [new AmmoType("img/ammo/s.png", 0), new AmmoType("img/ammo/s-f.png", 45), new AmmoType("img/ammo/s-d.png", 50), new AmmoType("img/ammo/s-sl.png", 150)]),
-			new Gun(2, false, "Specter 1882 Compact", 164, "img/specter_com.jpg", false, [new AmmoType("img/ammo/s.png", 0), new AmmoType("img/ammo/s-f.png", 45), new AmmoType("img/ammo/s-d.png", 50), new AmmoType("img/ammo/s-sl.png", 150)]),
-			new Gun(3, false, "Specter 1882 Bayonet", 223, "img/specter_bay.jpg", false, [new AmmoType("img/ammo/s.png", 0), new AmmoType("img/ammo/s-f.png", 45), new AmmoType("img/ammo/s-d.png", 50), new AmmoType("img/ammo/s-sl.png", 150)])
+			new Gun(3, false, "Specter 1882", 188, "img/specter.jpg", false, [new AmmoType("img/ammo/s.png", 0), new AmmoType("img/ammo/s-p.png", 25), new AmmoType("img/ammo/s-f.png", 45), new AmmoType("img/ammo/s-d.png", 50), new AmmoType("img/ammo/s-sl.png", 150)]),
+			new Gun(2, false, "Specter 1882 Compact", 164, "img/specter_com.jpg", false, [new AmmoType("img/ammo/s.png", 0), new AmmoType("img/ammo/s-p.png", 25), new AmmoType("img/ammo/s-f.png", 45), new AmmoType("img/ammo/s-d.png", 50), new AmmoType("img/ammo/s-sl.png", 150)]),
+			new Gun(3, false, "Specter 1882 Bayonet", 223, "img/specter_bay.jpg", false, [new AmmoType("img/ammo/s.png", 0), new AmmoType("img/ammo/s-p.png", 25), new AmmoType("img/ammo/s-f.png", 45), new AmmoType("img/ammo/s-d.png", 50), new AmmoType("img/ammo/s-sl.png", 150)])
 		)
 	),
 	new GunFamily(64, 2, new Array(
-			new Gun(3, false, "Winfield 1887 Terminus", 309, "img/terminus.jpg", false, [new AmmoType("img/ammo/s.png", 0), new AmmoType("img/ammo/s-f.png", 45), new AmmoType("img/ammo/s-p.png", 25)]),
-			new Gun(2, false, "Winfield 1887 Terminus Handcannon", 289, "img/terminus_hand.jpg", false, [new AmmoType("img/ammo/s.png", 0), new AmmoType("img/ammo/s-f.png", 45), new AmmoType("img/ammo/s-p.png", 25)])
+			new Gun(3, false, "Winfield 1887 Terminus", 309, "img/terminus.jpg", false, [new AmmoType("img/ammo/s.png", 0), new AmmoType("img/ammo/s-f.png", 45), new AmmoType("img/ammo/s-p.png", 25), new AmmoType("img/ammo/s-sl.png", 150)]),
+			new Gun(2, false, "Winfield 1887 Terminus Handcannon", 289, "img/terminus_hand.jpg", false, [new AmmoType("img/ammo/s.png", 0), new AmmoType("img/ammo/s-f.png", 45), new AmmoType("img/ammo/s-p.png", 25), new AmmoType("img/ammo/s-sl.png", 150)])
 		)
 	),
 	new GunFamily(82, 3, new Array(
-			new Gun(3, false, "Crown And King Auto-5", 600, "img/crown.jpg", false, [new AmmoType("img/ammo/s.png", 0), new AmmoType("img/ammo/s-p.png", 25)])
+			new Gun(3, false, "Crown And King Auto-5", 600, "img/crown.jpg", false, [new AmmoType("img/ammo/s.png", 0), new AmmoType("img/ammo/s-p.png", 25), new AmmoType("img/ammo/s-sl.png", 150)])
 		)
 	),
 	new GunFamily(1, 2, new Array(

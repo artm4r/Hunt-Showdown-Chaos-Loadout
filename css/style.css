@@ -9,18 +9,6 @@ html, body {
 	 background-color: #121212;
 	}
 
-
-.centerover {
-  position: relative;
-  text-align: center;
-  z-index: 1000000;
-}
-
-.centerover  img{
-  max-width: 100%;
-  height: auto;
-}
-
 .linkdiv {
   margin-top: 50px;
 }
