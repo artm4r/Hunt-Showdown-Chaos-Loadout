@@ -93,6 +93,10 @@ var gunFamilies = new Array(
 		new Gun(3, false, "Winfield M1876 Centennial Sniper", 298, "img/cent_snip.jpg", false, [new AmmoType("img/ammo/m.png",0), new AmmoType("img/ammo/m-p.png", 45), new AmmoType("img/ammo/m-f.png", 75)])
 		)
 	),
+	new GunFamily(61, 2, new Array(
+		new Gun(2, false, "Hunting Bow", 97, "img/bow.jpg", true, [new AmmoType("img/ammo/a-p.png",65), new AmmoType("img/ammo/a-f.png", 77), new AmmoType("img/ammo/a-c.png", 85)])
+		)
+	),
 	new GunFamily(72, 2, new Array(
 			new Gun(3, false, "Mosin-Nagant M1891", 490, "img/mosin.jpg", false, [new AmmoType("img/ammo/l.png",0), new AmmoType("img/ammo/l-i.png", 70), new AmmoType("img/ammo/l-s.png", 220)]),
 			new Gun(2, false, "Mosin-Nagant M1891 Obrez", 290, "img/mosin_obr.jpg", false, [new AmmoType("img/ammo/l.png",0), new AmmoType("img/ammo/l-i.png", 70), new AmmoType("img/ammo/l-s.png", 220)]),
@@ -227,6 +231,10 @@ var toolFamilies = new Array(
 			new Tool("First Aid Kit", 30, "img/aid.jpg")
 		)
 	),
+	new ToolFamily(1, new Array(
+		new Tool("Throwing Axe", 60, "img/axe_throw.jpg")
+	)
+),
 	new ToolFamily(11, new Array(
 			new Tool("Choke Bomb", 25, "img/choke.jpg")
 		)
