@@ -94,7 +94,7 @@ var gunFamilies = new Array(
 		)
 	),
 	new GunFamily(61, 2, new Array(
-		new Gun(2, false, "Hunting Bow", 97, "img/bow.jpg", true, [new AmmoType("img/ammo/a-p.png",65), new AmmoType("img/ammo/a-f.png", 77), new AmmoType("img/ammo/a-c.png", 85)])
+		new Gun(2, false, "Hunting Bow", 97, "img/bow.jpg", true, [new AmmoType("img/ammo/b.png",0), new AmmoType("img/ammo/a-p.png",65), new AmmoType("img/ammo/a-f.png", 77), new AmmoType("img/ammo/a-c.png", 85)])
 		)
 	),
 	new GunFamily(72, 2, new Array(
