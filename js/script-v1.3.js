@@ -946,6 +946,18 @@ function toggleMenu(){
 	}
 }
 
+function toggleChangelog(){
+	var menu = document.getElementById("changelog");
+	var container = document.getElementsByClassName("changelog-menu")[0];
+	if (menu.style.display === "inline-block"){
+		menu.style.display = "none";
+		container.classList.remove("menu-open");
+	} else {
+		menu.style.display = "inline-block";
+		container.classList.add("menu-open");
+	}
+}
+
 function updateLoadoutPrice(){
 	var container = document.getElementById("under");
 	if (container.style.display !== "block"){

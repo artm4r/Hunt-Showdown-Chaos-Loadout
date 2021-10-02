@@ -272,8 +272,21 @@ div.option-menu {
   text-align: left;
   top: 157px;
   background-color: #242424 ;
-  border-top-right-radius: 0%;
+  border-top-right-radius: 50%;
   border-bottom-right-radius: 50%;
+}
+
+div.changelog-menu {
+  position: absolute;
+  text-align: left;
+  top: 210px;
+  background-color: #242424 ;
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+}
+
+.changelog-title{
+  text-align: center;
 }
 
 #nav-toggle {
@@ -284,6 +297,15 @@ div.option-menu {
 
 #menu{
   display: none;
+}
+
+#changelog{
+  display: none;
+  padding-left: 20px;
+}
+
+#changelog li{
+  padding-right: 20px;
 }
 
 .noselect {
