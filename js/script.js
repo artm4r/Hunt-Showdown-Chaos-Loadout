@@ -56,9 +56,11 @@ var gunFamilies = new Array(
 		)
 	),
 	new GunFamily(6, 3, new Array(
-			new Gun(3, false, "Vetterli 71 Karabiner", 105, "img/vetterli.jpg", false, [new AmmoType("img/ammo/m.png",0), new AmmoType("img/ammo/m-i.png", 60), new AmmoType("img/ammo/m-f.png", 75)]),
-			new Gun(3, false, "Vetterli 71 Karabiner Deadeye", 155, "img/vetterli_dead.jpg", false, [new AmmoType("img/ammo/m.png",0), new AmmoType("img/ammo/m-i.png", 60), new AmmoType("img/ammo/m-f.png", 75)]),
-			new Gun(3, false, "Vetterli 71 Karabiner Bayonet", 130, "img/vetterli_bay.jpg", false, [new AmmoType("img/ammo/m.png",0), new AmmoType("img/ammo/m-i.png", 60), new AmmoType("img/ammo/m-f.png", 75)])
+			new Gun(3, false, "Vetterli 71 Karabiner", 105, "img/vetterli.jpg", false, [new AmmoType("img/ammo/m.png",0), new AmmoType("img/ammo/m-i.png", 60), new AmmoType("img/ammo/m-f.png", 75), new AmmoType("img/ammo/m-h.png", 90)]),
+			new Gun(3, false, "Vetterli 71 Karabiner Deadeye", 155, "img/vetterli_dead.jpg", false, [new AmmoType("img/ammo/m.png",0), new AmmoType("img/ammo/m-i.png", 60), new AmmoType("img/ammo/m-f.png", 75), new AmmoType("img/ammo/m-h.png", 90)]),
+			new Gun(3, false, "Vetterli 71 Karabiner Marksman", 190, "img/vetterli_mark.jpg", false, [new AmmoType("img/ammo/m.png",0), new AmmoType("img/ammo/m-i.png", 60), new AmmoType("img/ammo/m-f.png", 75), new AmmoType("img/ammo/m-h.png", 90)]),
+			new Gun(3, false, "Vetterli 71 Karabiner Bayonet", 130, "img/vetterli_bay.jpg", false, [new AmmoType("img/ammo/m.png",0), new AmmoType("img/ammo/m-i.png", 60), new AmmoType("img/ammo/m-f.png", 75), new AmmoType("img/ammo/m-h.png", 90)]),
+			new Gun(3, false, "Vetterli 71 Karabiner Silencer", 150, "img/vetterli_sup.jpg", false, [new AmmoType("img/ammo/m.png",0), new AmmoType("img/ammo/m-i.png", 60), new AmmoType("img/ammo/m-f.png", 75), new AmmoType("img/ammo/m-h.png", 90)])
 		)
 	),
 	new GunFamily(16, 3, new Array(
@@ -84,17 +86,18 @@ var gunFamilies = new Array(
 	),
 	new GunFamily(52, 3, new Array(
 			new Gun(3, false, "Lebel 1886", 397, "img/lebel.jpg", false, [new AmmoType("img/ammo/l.png",0), new AmmoType("img/ammo/l-i.png", 70), new AmmoType("img/ammo/l-s.png", 220)]),
+			new Gun(3, false, "Lebel 1886 Aperture", 425, "img/lebel_ap.jpg", false, [new AmmoType("img/ammo/l.png",0), new AmmoType("img/ammo/l-i.png", 70), new AmmoType("img/ammo/l-s.png", 220)]),
 			new Gun(3, false, "Lebel 1886 Talon", 422, "img/lebel_tal.jpg", false, [new AmmoType("img/ammo/l.png",0), new AmmoType("img/ammo/l-i.png", 70), new AmmoType("img/ammo/l-s.png", 220)]),
 			new Gun(3, false, "Lebel 1886 Marksman", 437, "img/lebel_mark.jpg", false, [new AmmoType("img/ammo/l.png",0), new AmmoType("img/ammo/l-i.png", 70), new AmmoType("img/ammo/l-s.png", 220)])
 		)
 	),
 	new GunFamily(58, 3, new Array(
-		new Gun(3, false, "Winfield M1876 Centennial", 277, "img/cent.jpg", false, [new AmmoType("img/ammo/m.png",0), new AmmoType("img/ammo/m-p.png", 45), new AmmoType("img/ammo/m-f.png", 75)]),
-		new Gun(3, false, "Winfield M1876 Centennial Sniper", 298, "img/cent_snip.jpg", false, [new AmmoType("img/ammo/m.png",0), new AmmoType("img/ammo/m-p.png", 45), new AmmoType("img/ammo/m-f.png", 75)])
+		new Gun(3, false, "Winfield M1876 Centennial", 157, "img/cent.jpg", false, [new AmmoType("img/ammo/m.png",0), new AmmoType("img/ammo/m-p.png", 45), new AmmoType("img/ammo/m-f.png", 75)]),
+		new Gun(3, false, "Winfield M1876 Centennial Sniper", 229, "img/cent_snip.jpg", false, [new AmmoType("img/ammo/m.png",0), new AmmoType("img/ammo/m-p.png", 45), new AmmoType("img/ammo/m-f.png", 75)])
 		)
 	),
 	new GunFamily(61, 2, new Array(
-		new Gun(2, false, "Hunting Bow", 97, "img/bow.jpg", true, [new AmmoType("img/ammo/b.png",0), new AmmoType("img/ammo/a-p.png",65), new AmmoType("img/ammo/a-f.png", 77), new AmmoType("img/ammo/a-c.png", 85)])
+		new Gun(2, false, "Hunting Bow", 57, "img/bow.jpg", true, [new AmmoType("img/ammo/b.png",0), new AmmoType("img/ammo/a-p.png",65), new AmmoType("img/ammo/a-f.png", 77), new AmmoType("img/ammo/a-c.png", 85)])
 		)
 	),
 	new GunFamily(72, 2, new Array(
@@ -120,7 +123,12 @@ var gunFamilies = new Array(
 			new Gun(2, false, "Nagant M1895 Deadeye", 42, "img/nagant_prec_dead.jpg", false, [new AmmoType("img/ammo/c.png",0), new AmmoType("img/ammo/c-p.png", 35), new AmmoType("img/ammo/c-h.png", 90)])
 		)
 	),
-	new GunFamily(10, 1, new Array(
+	new GunFamily(1, 1, new Array(
+		new Gun(1, false, "Scottfield No.3", 77, "img/scottfield.jpg", false, [new AmmoType("img/ammo/m.png",0), new AmmoType("img/ammo/m-i.png", 30), new AmmoType("img/ammo/m-f.png", 45)]),
+		new Gun(2, false, "Dual Scottfield No.3", 154, "img/scottfield_dual.jpg", false, [new AmmoType("img/ammo/m.png",0), new AmmoType("img/ammo/m-i.png", 30), new AmmoType("img/ammo/m-f.png", 45)])
+	)
+),
+	new GunFamily(18, 1, new Array(
 			new Gun(1, false, "Caldwell Pax", 100, "img/pax.jpg", false, [new AmmoType("img/ammo/m.png",0), new AmmoType("img/ammo/m-i.png", 60), new AmmoType("img/ammo/m-d.png", 90)]),
 			new Gun(2, true, "Dual Caldwell Pax", 200, "img/pax_dual.jpg", false, [new AmmoType("img/ammo/m.png",0), new AmmoType("img/ammo/m-i.png", 60), new AmmoType("img/ammo/m-d.png", 90)]),
 			new Gun(1, false, "Caldwell Pax Claw", 125, "img/pax_claw.jpg", false, [new AmmoType("img/ammo/m.png",0), new AmmoType("img/ammo/m-i.png", 60), new AmmoType("img/ammo/m-d.png", 90)]),
@@ -145,10 +153,10 @@ var gunFamilies = new Array(
 			)
 		),
 	new GunFamily(12, 1, new Array(
-			new Gun(1, false, "Nagant M1895 Officer", 66, "img/officer.jpg", false, [new AmmoType("img/ammo/c.png",0), new AmmoType("img/ammo/c-p.png", 35), new AmmoType("img/ammo/c-h.png", 90)]),
-			new Gun(2, true, "Dual Nagant M1895 Officer", 132, "img/officer_dual.jpg", false, [new AmmoType("img/ammo/c.png",0), new AmmoType("img/ammo/c-p.png", 35), new AmmoType("img/ammo/c-h.png", 90)]),
-			new Gun(1, false, "Nagant M1895 Officer Brawler", 80, "img/officer_bra.jpg", false, [new AmmoType("img/ammo/c.png",0), new AmmoType("img/ammo/c-p.png", 35), new AmmoType("img/ammo/c-h.png", 90)]),
-			new Gun(2, true, "Dual Nagant M1895 Officer Brawler", 160, "img/officer_bra_dual.jpg", false, [new AmmoType("img/ammo/c.png",0), new AmmoType("img/ammo/c-p.png", 35), new AmmoType("img/ammo/c-h.png", 90)]),
+			new Gun(1, false, "Nagant M1895 Officer", 96, "img/officer.jpg", false, [new AmmoType("img/ammo/c.png",0), new AmmoType("img/ammo/c-p.png", 35), new AmmoType("img/ammo/c-h.png", 90)]),
+			new Gun(2, true, "Dual Nagant M1895 Officer", 192, "img/officer_dual.jpg", false, [new AmmoType("img/ammo/c.png",0), new AmmoType("img/ammo/c-p.png", 35), new AmmoType("img/ammo/c-h.png", 90)]),
+			new Gun(1, false, "Nagant M1895 Officer Brawler", 110, "img/officer_bra.jpg", false, [new AmmoType("img/ammo/c.png",0), new AmmoType("img/ammo/c-p.png", 35), new AmmoType("img/ammo/c-h.png", 90)]),
+			new Gun(2, true, "Dual Nagant M1895 Officer Brawler", 220, "img/officer_bra_dual.jpg", false, [new AmmoType("img/ammo/c.png",0), new AmmoType("img/ammo/c-p.png", 35), new AmmoType("img/ammo/c-h.png", 90)]),
 			new Gun(3, false, "Nagant M1895 Officer Carbine", 155, "img/officer_carb.jpg", false, [new AmmoType("img/ammo/c.png",0), new AmmoType("img/ammo/c-p.png", 35), new AmmoType("img/ammo/c-h.png", 90)]),
 			new Gun(3, false, "Nagant M1895 Officer Carbine Deadeye", 155, "img/officer_carb_dead.jpg", false, [new AmmoType("img/ammo/c.png",0), new AmmoType("img/ammo/c-p.png", 35), new AmmoType("img/ammo/c-h.png", 90)])
 		)
@@ -171,7 +179,7 @@ var gunFamilies = new Array(
 			new Gun(2, false, "Romero 77 Hatchet", 62, "img/romero_hatc.jpg", true, [new AmmoType("img/ammo/s.png", 0), new AmmoType("img/ammo/s-s.png", 10), new AmmoType("img/ammo/s-d.png", 50), new AmmoType("img/ammo/s-p.png", 25), new AmmoType("img/ammo/s-sl.png", 150)])
 		)
 	),
-	new GunFamily(18, 2, new Array(
+	new GunFamily(10, 2, new Array(
 			new Gun(3, false, "Caldwell Rival 78", 100, "img/rival.jpg", false, [new AmmoType("img/ammo/s.png", 0), new AmmoType("img/ammo/s-p.png", 25), new AmmoType("img/ammo/s-f.png", 45), new AmmoType("img/ammo/s-sl.png", 150)]),
 			new Gun(2, false, "Caldwell Rival 78 Handcannon", 85, "img/rival_hand.jpg", false, [new AmmoType("img/ammo/s.png", 0), new AmmoType("img/ammo/s-p.png", 25), new AmmoType("img/ammo/s-f.png", 45), new AmmoType("img/ammo/s-sl.png", 150)])
 		)
@@ -208,8 +216,8 @@ var gunFamilies = new Array(
 		)
 	),
 	new GunFamily(4, 1, new Array(
-			new Gun(1, false, "Hand Crossbow", 35, "img/crossbow_hand.jpg", true, [new AmmoType("img/ammo/b.png", 0), new AmmoType("img/ammo/b-p.png", 25), new AmmoType("img/ammo/b-c.png", 10), new AmmoType("img/ammo/b-ch.png", 20)]),
-			new Gun(3, false, "Crossbow", 55, "img/crossbow.jpg", true, [new AmmoType("img/ammo/b.png", 0), new AmmoType("img/ammo/b-e.png", 70), new AmmoType("img/ammo/b-s.png", 80)]),
+			new Gun(1, false, "Hand Crossbow", 30, "img/crossbow_hand.jpg", true, [new AmmoType("img/ammo/b.png", 0), new AmmoType("img/ammo/b-p.png", 25), new AmmoType("img/ammo/b-c.png", 10), new AmmoType("img/ammo/b-ch.png", 20)]),
+			new Gun(3, false, "Crossbow", 50, "img/crossbow.jpg", true, [new AmmoType("img/ammo/b.png", 0), new AmmoType("img/ammo/b-e.png", 70), new AmmoType("img/ammo/b-s.png", 80)]),
 		)
 	)
 );
@@ -287,15 +295,17 @@ var consumableFamilies = new Array(
 	),
 	new ConsumableFamily(1, new Array(
 			new Consumable("Weak Vitality Shot", 10, "img/vitality_weak.jpg"),
-			new Consumable("Weak Stamina Shot", 10, "img/stamina_weak.jpg"),
-			new Consumable("Vitality Shot", 75, "img/vitality.jpg"),
-			new Consumable("Stamina Shot", 40, "img/stamina.jpg")
+			new Consumable("Weak Stamina Shot", 60, "img/stamina_weak.jpg"),
+			new Consumable("Vitality Shot", 65, "img/vitality.jpg"),
+			new Consumable("Stamina Shot", 100, "img/stamina.jpg"),
+			new Consumable("Weak Regeneration Shot", 65, "img/regen_weak.jpg"),
+			new Consumable("Weak Regeneration Shot", 110, "img/regen.jpg")
 		)
 	),
 	new ConsumableFamily(48, new Array(
 			new Consumable("Poison Bomb", 25, "img/poison.jpg"),
-			new Consumable("Weak Antidote Shot", 25, "img/antidote_weak.jpg"),
-			new Consumable("Antidote Shot", 55, "img/antidote.jpg"),
+			new Consumable("Weak Antidote Shot", 50, "img/antidote_weak.jpg"),
+			new Consumable("Antidote Shot", 80, "img/antidote.jpg"),
 			new Consumable("Hive Bomb", 40, "img/hive.jpg")
 		)
 	),
