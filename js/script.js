@@ -278,7 +278,7 @@ var toolFamilies = new Array(
 );
 
 var consumableFamilies = new Array(
-	new ConsumableFamily(1, new Array(
+	new ConsumableFamily(3, new Array(
 			new Consumable("Fire Bomb", 18, "img/fire.jpg"),
 			new Consumable("Liquid Fire Bomb", 23, "img/fire_liq.jpg"),
 			new Consumable("Hellfire Bomb", 70, "img/fire_hell.jpg")
