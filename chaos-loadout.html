@@ -8,7 +8,8 @@
   <title>Hunt Random Loadout Generator</title>
   <meta name="description" content="A random loadout generator for the game Hunt : Showdown.">
   <meta name="author" content="RichardCQC">
-  <link rel="stylesheet" href="css/style.css?v=2">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="css/style.css?v=3">
   <script src="js/script.js?v=6"></script>
   <script>
     window.onload = function() {
@@ -20,12 +21,12 @@
       type="image/png" 
       href="img/navicon.png">
 </head>
- 
+
 <body>
+  <div class="header">
+    <img src="img/banner.jpg" alt="Hunt Showdown Loadout Generator"/>
+  </div>
   <div class="main-content">
-  	<div class="header">
-      <img src="img/banner.jpg" alt="Hunt Showdown Loadout Generator"/>
-    </div>
     <div class="option-menu">
       <a id="nav-toggle" class="noselect" onclick="toggleMenu()">&#9776;</a>
       <span id="menu">
@@ -55,6 +56,7 @@
       <span id="changelog">
         <div class="changelog-title">Changelog</div>
         <ul>
+          <li>2021-11-25 - Added force medkit option and mobile zoom fix.</li>
           <li>2021-11-25 - Updated for Hunt 1.7 patch.</li>
           <li>2021-10-17 - Updated for Hunt 1.6.2 patch.</li>
           <li>2021-10-02 - Preloaded images.</li>
@@ -94,12 +96,20 @@
           </label>
           <label for="customammo">Custom Ammo</label>
         </div>
+        <br><br>
         <div class="option">
           <label class="switch">
             <input type="checkbox" id="quartermaster" name="quartermaster" />
             <span class="slider round"></span>
           </label>
           <label for="quartermaster">Quartermaster</label>
+        </div>
+        <div class="option">
+          <label class="switch">
+            <input type="checkbox" id="med" name="med"/>
+            <span class="slider round"></span>
+          </label>
+          <label for="med">Force Medkit</label>
         </div>
         <br><br>
         <button id="generate_loadout" type="submit" class="red-button">Generate Loadout</button>

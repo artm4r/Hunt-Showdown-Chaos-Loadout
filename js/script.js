@@ -10,6 +10,7 @@ var allowCustomAmmo = true;
 var customAmmoPercentage = 50;
 var sound = true;
 var animation = true;
+var forceMedkit = false;
 
 //Variables for result
 var weapon1 = null;
@@ -129,7 +130,7 @@ var gunFamilies = new Array(
 	),
 	new GunFamily(1, 1, new Array(
 		new Gun(1, false, "Scottfield No.3", 77, "img/scottfield.jpg", false, [new AmmoType("img/ammo/m.png",0), new AmmoType("img/ammo/m-i.png", 30), new AmmoType("img/ammo/m-f.png", 45)]),
-		new Gun(2, false, "Dual Scottfield No.3", 154, "img/scottfield_dual.jpg", false, [new AmmoType("img/ammo/m.png",0), new AmmoType("img/ammo/m-i.png", 30), new AmmoType("img/ammo/m-f.png", 45)])
+		new Gun(2, true, "Dual Scottfield No.3", 154, "img/scottfield_dual.jpg", false, [new AmmoType("img/ammo/m.png",0), new AmmoType("img/ammo/m-i.png", 30), new AmmoType("img/ammo/m-f.png", 45)])
 	)
 ),
 	new GunFamily(18, 1, new Array(
@@ -226,6 +227,8 @@ var gunFamilies = new Array(
 	)
 );
 
+var medkit = new Tool("First Aid Kit", 30, "img/aid.jpg");
+
 var toolFamilies = new Array(
 	new ToolFamily(1, new Array(
 			new Tool("Knife", 20,"img/knife.jpg"),
@@ -240,7 +243,7 @@ var toolFamilies = new Array(
 		)
 	),
 	new ToolFamily(1, new Array(
-			new Tool("First Aid Kit", 30, "img/aid.jpg")
+			medkit
 		)
 	),
 	new ToolFamily(1, new Array(
@@ -333,6 +336,7 @@ function randomizeSlots() {
 		updateStack[key].forEach(function(num) {
 			switch (key) {
 				case "tools":
+
 					store[key][(num-1)] = generateTool();
 					break;
 				case "consumables":
@@ -401,6 +405,7 @@ function disableFormElements(){
 	document.getElementById("generate_loadout").disabled = true;
 	document.getElementById("dual").disabled = true;
 	document.getElementById("dup").disabled = true;
+	document.getElementById("med").disabled = true;
 	document.getElementById("quartermaster").disabled = true;
 	document.getElementById("customammo").disabled = true;
 	document.getElementById("rank").disabled = true;
@@ -412,6 +417,7 @@ function enableFormElements(){
 	document.getElementById("generate_loadout").disabled = false;
 	document.getElementById("dual").disabled = false;
 	document.getElementById("dup").disabled = false;
+	document.getElementById("med").disabled = false;
 	document.getElementById("quartermaster").disabled = false;
 	document.getElementById("customammo").disabled = false;
 	document.getElementById("rank").disabled = false;
@@ -539,6 +545,7 @@ function setParameterValues() {
 	});
 
 	allowDualWield = document.getElementById("dual").checked;
+	forceMedkit = document.getElementById("med").checked;
 	allowQuatermaster = document.getElementById("quartermaster").checked;
 	allowDuplicateWeapons = document.getElementById("dup").checked;
 	allowCustomAmmo = document.getElementById("customammo").checked;
@@ -637,6 +644,13 @@ function generateTool() {
 	if(isToolUnavailable(candidates)){
 		return null;
 	}
+
+	if(forceMedkit){
+		if (!store.tools.includes(medkit)){
+			tool = medkit;
+		}
+	}
+
 	while (tool == null) {
 		var randomFamily = candidates[getRandomInt(candidates.length)];
 		var toolCandidates = filterToolCandidates(randomFamily);
@@ -663,7 +677,7 @@ function isDuplicate(array) {
 }
 
 function activateEvents() {
-	var checks = [].slice.call(document.getElementsByTagName("input"));
+	/*var checks = [].slice.call(document.getElementsByTagName("input"));
 	checks = checks.filter(box => box.type == "checkbox");
 	checks.forEach(function(box) {
 		box.addEventListener("change", function(e) {
@@ -677,7 +691,7 @@ function activateEvents() {
 				updateStack[name] = updateStack[name].filter(n => n !== number);
 			}
 		})
-	});
+	});*/
 
 	var buttons = [].slice.call(document.getElementsByTagName("button"))
 			.filter(btn => btn.type == "submit");
@@ -920,6 +934,9 @@ function reroll(toRoll){
 	if (toRoll.substring(0, 4) == "tool") {
 		var tnum = parseInt(toRoll.substring(4))-1;
 		var prev = store.tools[tnum]
+		if(prev == medkit && forceMedkit){
+			return;
+		}
 		while(store.tools[tnum] == prev){
 			store.tools[tnum] = null;
 			store.tools[tnum] = generateTool();
@@ -953,9 +970,13 @@ function toggleMenu(){
 	var container = document.getElementsByClassName("option-menu")[0];
 	if (menu.style.display === "inline-block"){
 		menu.style.display = "none";
+		menu.style.minWidth = "none";
+		menu.style.paddingBottom = "0px";
 		container.classList.remove("menu-open");
 	} else {
 		menu.style.display = "inline-block";
+		menu.style.minWidth = "650px";
+		menu.style.paddingBottom = "20px";
 		container.classList.add("menu-open");
 	}
 }
