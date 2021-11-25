@@ -100,6 +100,10 @@ var gunFamilies = new Array(
 		new Gun(2, false, "Hunting Bow", 57, "img/bow.jpg", true, [new AmmoType("img/ammo/b.png",0), new AmmoType("img/ammo/a-p.png",65), new AmmoType("img/ammo/a-f.png", 77), new AmmoType("img/ammo/a-c.png", 85)])
 		)
 	),
+	new GunFamily(62, 3, new Array(
+		new Gun(3, false, "Berthier Mle 1892", 57, "img/berthier.jpg", true, [new AmmoType("img/ammo/l.png",0), new AmmoType("img/ammo/l-i.png",35), new AmmoType("img/ammo/l-s.png", 220)])
+		)
+	),
 	new GunFamily(72, 2, new Array(
 			new Gun(3, false, "Mosin-Nagant M1891", 490, "img/mosin.jpg", false, [new AmmoType("img/ammo/l.png",0), new AmmoType("img/ammo/l-i.png", 70), new AmmoType("img/ammo/l-s.png", 220)]),
 			new Gun(2, false, "Mosin-Nagant M1891 Obrez", 290, "img/mosin_obr.jpg", false, [new AmmoType("img/ammo/l.png",0), new AmmoType("img/ammo/l-i.png", 70), new AmmoType("img/ammo/l-s.png", 220)]),
@@ -207,7 +211,7 @@ var gunFamilies = new Array(
 			new Gun(1, false, "Machete", 18, "img/machete.jpg", false, [ammoTypeNone])
 		)
 	),
-	new GunFamily(62, 1, new Array(
+	new GunFamily(42, 1, new Array(
 			new Gun(1, false, "Cavalry Saber", 60, "img/saber.jpg", false, [ammoTypeNone])
 		)
 	),
@@ -240,7 +244,7 @@ var toolFamilies = new Array(
 		)
 	),
 	new ToolFamily(1, new Array(
-		new Tool("Throwing Axe", 60, "img/axe_throw.jpg")
+		new Tool("Throwing Axe", 30, "img/axe_throw.jpg")
 	)
 ),
 	new ToolFamily(11, new Array(
@@ -258,9 +262,9 @@ var toolFamilies = new Array(
 	),
 	new ToolFamily(32, new Array(
 			new Tool("Decoys", 6, "img/decoy.jpg"),
-			new Tool("Alert Trip Mine", 15, "img/trip_alert.jpg"),
+			new Tool("Alert Trip Mine", 30, "img/trip_alert.jpg"),
 			new Tool("Blank Fire Decoys", 45, "img/decoy_blank.jpg"),
-			new Tool("Decoy Fuses", 60, "img/decoy_fuses.jpg")
+			new Tool("Decoy Fuses", 30, "img/decoy_fuses.jpg")
 		)
 	),
 	new ToolFamily(40, new Array(
@@ -268,7 +272,7 @@ var toolFamilies = new Array(
 		)
 	),
 	new ToolFamily(48, new Array(
-			new Tool("Poison Trip Mine", 60, "img/trip_poi.jpg")
+			new Tool("Poison Trip Mine", 30, "img/trip_poi.jpg")
 		)
 	),
 	new ToolFamily(66, new Array(
@@ -302,10 +306,10 @@ var consumableFamilies = new Array(
 			new Consumable("Weak Regeneration Shot", 110, "img/regen.jpg")
 		)
 	),
-	new ConsumableFamily(48, new Array(
+	new ConsumableFamily(2, new Array(
+			new Consumable("Weak Antidote Shot", 30, "img/antidote_weak.jpg"),
 			new Consumable("Poison Bomb", 25, "img/poison.jpg"),
-			new Consumable("Weak Antidote Shot", 50, "img/antidote_weak.jpg"),
-			new Consumable("Antidote Shot", 80, "img/antidote.jpg"),
+			new Consumable("Antidote Shot", 55, "img/antidote.jpg"),
 			new Consumable("Hive Bomb", 40, "img/hive.jpg")
 		)
 	),
