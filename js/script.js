@@ -40,12 +40,12 @@ var remainingSize = 0;
 //Data intialization
 var gunFamilies = new Array( 
 	new GunFamily(1, 2, new Array(
-			new Gun(3, false, "Winfield M1873C", 41, "img/winfieldc.jpg", false, [new AmmoType("img/ammo/c.png",0), new AmmoType("img/ammo/c-i.png", 50), new AmmoType("img/ammo/c-h.png", 90)]),
-			new Gun(3, false,"Winfield M1873C Silencer", 55, "img/winfieldc_sup.jpg", false, [new AmmoType("img/ammo/c.png",0), new AmmoType("img/ammo/c-i.png", 50), new AmmoType("img/ammo/c-h.png", 90)]),
-			new Gun(3, false, "Winfield M1873C Marksman", 56, "img/winfieldc_mark.jpg", false, [new AmmoType("img/ammo/c.png",0), new AmmoType("img/ammo/c-i.png", 50), new AmmoType("img/ammo/c-h.png", 90)]),
-			new Gun(2, false, "Winfield M1873C Vandal", 35, "img/winfieldc_van.jpg", false, [new AmmoType("img/ammo/c.png",0), new AmmoType("img/ammo/c-i.png", 50), new AmmoType("img/ammo/c-h.png", 90)]),
-			new Gun(2, false, "Winfield M1873C Vandal Striker", 39, "img/winfieldc_van_str.jpg", false, [new AmmoType("img/ammo/c.png",0), new AmmoType("img/ammo/c-i.png", 50), new AmmoType("img/ammo/c-h.png", 90)]),
-			new Gun(2, false, "Winfield M1873C Vandal Deadeye", 45, "img/winfieldc_van_dead.jpg", false, [new AmmoType("img/ammo/c.png",0), new AmmoType("img/ammo/c-i.png", 50), new AmmoType("img/ammo/c-h.png", 90)])
+			new Gun(3, false, "Winfield M1873C", 41, "img/winfieldc.jpg", false, [new AmmoType("img/ammo/c.png",0), new AmmoType("img/ammo/c-i.png", 50), new AmmoType("img/ammo/c-h.png", 90), new AmmoType("img/ammo/c-f.png", 35)]),
+			new Gun(3, false,"Winfield M1873C Silencer", 55, "img/winfieldc_sup.jpg", false, [new AmmoType("img/ammo/c.png",0), new AmmoType("img/ammo/c-i.png", 50), new AmmoType("img/ammo/c-h.png", 90), new AmmoType("img/ammo/c-f.png", 35)]),
+			new Gun(3, false, "Winfield M1873C Marksman", 56, "img/winfieldc_mark.jpg", false, [new AmmoType("img/ammo/c.png",0), new AmmoType("img/ammo/c-i.png", 50), new AmmoType("img/ammo/c-h.png", 90), new AmmoType("img/ammo/c-f.png", 35)]),
+			new Gun(2, false, "Winfield M1873C Vandal", 35, "img/winfieldc_van.jpg", false, [new AmmoType("img/ammo/c.png",0), new AmmoType("img/ammo/c-i.png", 50), new AmmoType("img/ammo/c-h.png", 90), new AmmoType("img/ammo/c-f.png", 35)]),
+			new Gun(2, false, "Winfield M1873C Vandal Striker", 39, "img/winfieldc_van_str.jpg", false, [new AmmoType("img/ammo/c.png",0), new AmmoType("img/ammo/c-i.png", 50), new AmmoType("img/ammo/c-h.png", 90), new AmmoType("img/ammo/c-f.png", 35)]),
+			new Gun(2, false, "Winfield M1873C Vandal Deadeye", 45, "img/winfieldc_van_dead.jpg", false, [new AmmoType("img/ammo/c.png",0), new AmmoType("img/ammo/c-i.png", 50), new AmmoType("img/ammo/c-h.png", 90), new AmmoType("img/ammo/c-f.png", 35)])
 		)
 	),
 	new GunFamily(1, 2, new Array(
@@ -78,11 +78,11 @@ var gunFamilies = new Array(
 		)
 	),
 	new GunFamily(20, 3, new Array(
-			new Gun(3, false, "Winfield M1873", 75, "img/winfield.jpg", false, [new AmmoType("img/ammo/c.png",0), new AmmoType("img/ammo/c-i.png", 50), new AmmoType("img/ammo/c-h.png", 90)]),
-			new Gun(3, false, "Winfield M1873 Aperture", 80, "img/winfield_ap.jpg", false, [new AmmoType("img/ammo/c.png",0), new AmmoType("img/ammo/c-i.png", 50), new AmmoType("img/ammo/c-h.png", 90)]),
-			new Gun(3, false, "Winfield M1873 Talon", 100, "img/winfield_tal.jpg", false, [new AmmoType("img/ammo/c.png",0), new AmmoType("img/ammo/c-i.png", 50), new AmmoType("img/ammo/c-h.png", 90)]),
-			new Gun(3, false, "Winfield M1873 Swift", 128, "img/winfield_swi.jpg", false, [new AmmoType("img/ammo/c.png",0), new AmmoType("img/ammo/c-i.png", 50), new AmmoType("img/ammo/c-h.png", 90)]),
-			new Gun(3, false, "Winfield M1873 Musket", 137, "img/winfield_mus.jpg", false, [new AmmoType("img/ammo/c.png",0), new AmmoType("img/ammo/c-i.png", 50), new AmmoType("img/ammo/c-h.png", 90)])
+			new Gun(3, false, "Winfield M1873", 75, "img/winfield.jpg", false, [new AmmoType("img/ammo/c.png",0), new AmmoType("img/ammo/c-i.png", 50), new AmmoType("img/ammo/c-h.png", 90), new AmmoType("img/ammo/c-f.png", 35)]),
+			new Gun(3, false, "Winfield M1873 Aperture", 80, "img/winfield_ap.jpg", false, [new AmmoType("img/ammo/c.png",0), new AmmoType("img/ammo/c-i.png", 50), new AmmoType("img/ammo/c-h.png", 90), new AmmoType("img/ammo/c-f.png", 35)]),
+			new Gun(3, false, "Winfield M1873 Talon", 100, "img/winfield_tal.jpg", false, [new AmmoType("img/ammo/c.png",0), new AmmoType("img/ammo/c-i.png", 50), new AmmoType("img/ammo/c-h.png", 90), new AmmoType("img/ammo/c-f.png", 35)]),
+			new Gun(3, false, "Winfield M1873 Swift", 128, "img/winfield_swi.jpg", false, [new AmmoType("img/ammo/c.png",0), new AmmoType("img/ammo/c-i.png", 50), new AmmoType("img/ammo/c-h.png", 90), new AmmoType("img/ammo/c-f.png", 35)]),
+			new Gun(3, false, "Winfield M1873 Musket", 137, "img/winfield_mus.jpg", false, [new AmmoType("img/ammo/c.png",0), new AmmoType("img/ammo/c-i.png", 50), new AmmoType("img/ammo/c-h.png", 90), new AmmoType("img/ammo/c-f.png", 35)])
 		)
 	),
 	new GunFamily(52, 3, new Array(
@@ -102,7 +102,8 @@ var gunFamilies = new Array(
 		)
 	),
 	new GunFamily(62, 3, new Array(
-		new Gun(3, false, "Berthier Mle 1892", 57, "img/berthier.jpg", true, [new AmmoType("img/ammo/l.png",0), new AmmoType("img/ammo/l-i.png",35), new AmmoType("img/ammo/l-s.png", 220)])
+		new Gun(3, false, "Berthier Mle 1892", 356, "img/berthier.jpg", true, [new AmmoType("img/ammo/l.png",0), new AmmoType("img/ammo/l-i.png",35), new AmmoType("img/ammo/l-s.png", 220)]),
+		new Gun(3, false, "Berthier Mle 1892 Deadeye", 388, "img/berthier_dead.jpg", true, [new AmmoType("img/ammo/l.png",0), new AmmoType("img/ammo/l-i.png",35), new AmmoType("img/ammo/l-s.png", 220)])
 		)
 	),
 	new GunFamily(72, 2, new Array(
@@ -130,7 +131,12 @@ var gunFamilies = new Array(
 	),
 	new GunFamily(1, 1, new Array(
 		new Gun(1, false, "Scottfield No.3", 77, "img/scottfield.jpg", false, [new AmmoType("img/ammo/m.png",0), new AmmoType("img/ammo/m-i.png", 30), new AmmoType("img/ammo/m-f.png", 45)]),
-		new Gun(2, true, "Dual Scottfield No.3", 154, "img/scottfield_dual.jpg", false, [new AmmoType("img/ammo/m.png",0), new AmmoType("img/ammo/m-i.png", 30), new AmmoType("img/ammo/m-f.png", 45)])
+		new Gun(2, true, "Dual Scottfield No.3", 154, "img/scottfield_dual.jpg", false, [new AmmoType("img/ammo/m.png",0), new AmmoType("img/ammo/m-i.png", 30), new AmmoType("img/ammo/m-f.png", 45)]),
+		new Gun(1, false, "Scottfield No.3 Spitfire", 108, "img/scottfield_spit.jpg", false, [new AmmoType("img/ammo/m.png",0), new AmmoType("img/ammo/m-i.png", 30), new AmmoType("img/ammo/m-f.png", 45)]),
+		new Gun(2, true, "Dual Scottfield No.3 Spitfire", 216, "img/scottfield_spit_dual.jpg", false, [new AmmoType("img/ammo/m.png",0), new AmmoType("img/ammo/m-i.png", 30), new AmmoType("img/ammo/m-f.png", 45)]),
+		new Gun(2, false, "Dual Scottfield No.3 Precision", 85, "img/scottfield_prec.jpg", false, [new AmmoType("img/ammo/m.png",0), new AmmoType("img/ammo/m-i.png", 30), new AmmoType("img/ammo/m-f.png", 45)]),
+		new Gun(1, false, "Scottfield No.3 Swift", 95, "img/scottfield_swi.jpg", false, [new AmmoType("img/ammo/m.png",0), new AmmoType("img/ammo/m-i.png", 30), new AmmoType("img/ammo/m-f.png", 45)]),
+		new Gun(2, true, "Dual Scottfield No.3 Swift", 190, "img/scottfield_swi_dual.jpg", false, [new AmmoType("img/ammo/m.png",0), new AmmoType("img/ammo/m-i.png", 30), new AmmoType("img/ammo/m-f.png", 45)])
 	)
 ),
 	new GunFamily(18, 1, new Array(
@@ -141,10 +147,10 @@ var gunFamilies = new Array(
 		)
 	),
 	new GunFamily(22, 1, new Array(
-			new Gun(1, false, "Caldwell Conversion Pistol", 26, "img/conversion.jpg", false, [new AmmoType("img/ammo/c.png",0), new AmmoType("img/ammo/c-d.png", 60), new AmmoType("img/ammo/c-f.png", 60)]),
-			new Gun(2, true, "Dual Caldwell Conversion Pistol", 52, "img/conversion_dual.jpg", false, [new AmmoType("img/ammo/c.png",0), new AmmoType("img/ammo/c-d.png", 60), new AmmoType("img/ammo/c-f.png", 60)]),
-			new Gun(1, false, "Caldwell Conversion Chain Pistol", 50, "img/conversion_chain.jpg", false, [new AmmoType("img/ammo/c.png",0), new AmmoType("img/ammo/c-d.png", 60), new AmmoType("img/ammo/c-f.png", 60)]),
-			new Gun(2, true, "Dual Caldwell Conversion Chain Pistol", 100, "img/conversion_chain_dual.jpg", false, [new AmmoType("img/ammo/c.png",0), new AmmoType("img/ammo/c-d.png", 60), new AmmoType("img/ammo/c-f.png", 60)]),
+			new Gun(1, false, "Caldwell Conversion Pistol", 26, "img/conversion.jpg", false, [new AmmoType("img/ammo/c.png",0), new AmmoType("img/ammo/c-d.png", 60), new AmmoType("img/ammo/c-f.png", 35)]),
+			new Gun(2, true, "Dual Caldwell Conversion Pistol", 52, "img/conversion_dual.jpg", false, [new AmmoType("img/ammo/c.png",0), new AmmoType("img/ammo/c-d.png", 60), new AmmoType("img/ammo/c-f.png", 35)]),
+			new Gun(1, false, "Caldwell Conversion Chain Pistol", 50, "img/conversion_chain.jpg", false, [new AmmoType("img/ammo/c.png",0), new AmmoType("img/ammo/c-d.png", 60), new AmmoType("img/ammo/c-f.png", 35)]),
+			new Gun(2, true, "Dual Caldwell Conversion Chain Pistol", 100, "img/conversion_chain_dual.jpg", false, [new AmmoType("img/ammo/c.png",0), new AmmoType("img/ammo/c-d.png", 60), new AmmoType("img/ammo/c-f.png", 35)]),
 			new Gun(1, false, "Caldwell Conversion Upercut", 275, "img/conversion_up.jpg", false, [new AmmoType("img/ammo/l.png",0), new AmmoType("img/ammo/c-i.png", 70), new AmmoType("img/ammo/l-e.png", 120)]),
 			new Gun(2, true, "Dual Caldwell Conversion Upercut", 550, "img/conversion_up_dual.jpg", false, [new AmmoType("img/ammo/l.png",0), new AmmoType("img/ammo/c-i.png", 70), new AmmoType("img/ammo/l-e.png", 120)])
 		)
@@ -538,8 +544,7 @@ function setParameterValues() {
 			.filter(i => i.type == "checkbox" && /.*\d+$/.test(i.id));
 	checks.forEach(function(box) {
 		if (box.checked) {
-			// maybe introduce a dataset field? (hp)
-			var name = box.id.slice(0, -1)+"s";//wtf. (hp)
+			var name = box.id.slice(0, -1)+"s";
 			updateStack[name].push(parseInt(box.id.slice(-1)));
 		}
 	});
@@ -556,18 +561,23 @@ function setParameterValues() {
 
 function generateWeapon() {
 	var weapon = null;
-	var candidates = filterWeaponFamilyCandidates();
+	var weaponCandidates = filterAvailableWeapons();
 	while (weapon == null) {
-		var randomFamily = candidates[getRandomInt(candidates.length)];
-		var weaponCandidates = filterWeaponCandidates(randomFamily);
 		weapon = weaponCandidates[getRandomInt(weaponCandidates.length)]
 		if (!allowDuplicateWeapons) {
 			if ((weapon1 != null && weapon.name == weapon1.name) || (weapon2 != null && weapon.name == weapon2.name)) {
 				weapon = null;
 			}
 		}
-		generateAmmo(weapon);
+		if (allowDualWield) {
+			if (weapon.dualWield){
+				if (Math.random() < 0.5){
+					weapon = null;
+				}
+			}
+		}
 	}
+	generateAmmo(weapon);
 	return weapon;
 }
 
@@ -612,35 +622,29 @@ function generateAmmo(weapon){
 		}
 }
 
-function filterWeaponFamilyCandidates(){
+function filterAvailableWeapons(){
 	var candidates = new Array();
 	for (family of gunFamilies){
 		if (family.rank <= rank && family.minimumSize <= remainingSize) {
-			candidates.push(family);
+			for (gun of family.guns){
+				if (gun.size <= remainingSize) {
+					if(gun.dualWield){
+						if (allowDualWield) {
+							candidates.push(gun)
+						}
+					} else {
+						candidates.push(gun);
+					}
+				}
+			}
 		}
 	}
 	return candidates;
 }
 
-function filterWeaponCandidates(family){
-var weaponCandidates = new Array();
-	for (gun of family.guns){
-		if (gun.size <= remainingSize) {
-			if(gun.dualWield){
-				if (allowDualWield) {
-					weaponCandidates.push(gun)
-				}
-			} else {
-				weaponCandidates.push(gun);
-			}
-		}
-	}
-	return weaponCandidates;
-}
-
 function generateTool() {
 	var tool = null;
-	var candidates = filterToolFamilyCandidates();
+	var candidates = filterAvailableTools();
 	if(isToolUnavailable(candidates)){
 		return null;
 	}
@@ -652,9 +656,7 @@ function generateTool() {
 	}
 
 	while (tool == null) {
-		var randomFamily = candidates[getRandomInt(candidates.length)];
-		var toolCandidates = filterToolCandidates(randomFamily);
-		tool = toolCandidates[getRandomInt(toolCandidates.length)];
+		tool = candidates[getRandomInt(candidates.length)];
 		if (store.tools.includes(tool)){
 			tool = null;
 		}
@@ -662,11 +664,17 @@ function generateTool() {
 	return tool;
 }
 
-function filterToolFamilyCandidates(){
+function filterAvailableTools(){
 	var candidates = new Array();
 	for (family of toolFamilies) {
 		if (family.rank <= rank) {
-			candidates.push(family);
+			for (tool of family.tools){
+				if (store.tools.every(function(t) {
+					return (t == null || t != null && t.name);
+					})) {
+					candidates.push(tool);
+				}
+			}
 		}
 	}
 	return candidates;
@@ -677,22 +685,6 @@ function isDuplicate(array) {
 }
 
 function activateEvents() {
-	/*var checks = [].slice.call(document.getElementsByTagName("input"));
-	checks = checks.filter(box => box.type == "checkbox");
-	checks.forEach(function(box) {
-		box.addEventListener("change", function(e) {
-			var name = e.target.id.slice(0, -1)+"s";//wtf. (hp)
-			var number = parseInt(e.target.id.slice(-1))
-
-
-			if (e.target.checked) {
-				updateStack[name].push(number);
-			} else {
-				updateStack[name] = updateStack[name].filter(n => n !== number);
-			}
-		})
-	});*/
-
 	var buttons = [].slice.call(document.getElementsByTagName("button"))
 			.filter(btn => btn.type == "submit");
 	buttons.forEach(function(btn) {
@@ -720,21 +712,8 @@ function findFamilyOf(searchin, sub, searchfor) {
 	return (index != -1 ? searchin[index] : null);
 }
 
-function filterToolCandidates(family){
-	var candidates = new Array();
-	for (tool of family.tools){
-		if (store.tools.every(function(t) {
-			return (t == null || t != null && t.name);
-		})) {
-			candidates.push(tool);
-		}
-	}
-	return candidates;
-}
-
 function isToolUnavailable(candidates){
 	var totalNumberOfTools = 0;
-	var totalNumberOfCandidate = 0;
 
 	store.tools.forEach(function(tool) {
 		if (tool != null) {
@@ -742,12 +721,7 @@ function isToolUnavailable(candidates){
 		}
 	});
 
-	for (family of candidates){
-		for(tool of family.tools){
-			totalNumberOfCandidate = totalNumberOfCandidate + 1;
-		}
-	}
-	if (totalNumberOfTools == totalNumberOfCandidate) {
+	if (totalNumberOfTools == candidates.length) {
 		return true;
 	}
 	return false;
