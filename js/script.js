@@ -139,6 +139,11 @@ var gunFamilies = new Array(
 		new Gun(2, true, "Dual Scottfield No.3 Swift", 190, "img/scottfield_swi_dual.jpg", false, [new AmmoType("img/ammo/m.png",0), new AmmoType("img/ammo/m-i.png", 30), new AmmoType("img/ammo/m-f.png", 45)])
 	)
 ),
+new GunFamily(1, 1, new Array(
+	new Gun(1, false, "Sparks Pistol", 155, "img/sparks_pistol.jpg", true, [new AmmoType("img/ammo/l.png",0), new AmmoType("img/ammo/l-i.png", 70), new AmmoType("img/ammo/l-f.png", 90), new AmmoType("img/ammo/l-p.png", 60)]),
+	new Gun(2, true, "Dual Soarks Pistol", 310, "img/sparks_pistol_dual.jpg", true, [new AmmoType("img/ammo/l.png",0), new AmmoType("img/ammo/l-i.png", 70), new AmmoType("img/ammo/l-f.png", 90), new AmmoType("img/ammo/l-p.png", 60)])
+	)
+),
 	new GunFamily(12, 1, new Array(
 			new Gun(1, false, "Caldwell 92 New Army", 90, "img/new.jpg", false,  [new AmmoType("img/ammo/c.png",0), new AmmoType("img/ammo/c-d.png", 40), new AmmoType("img/ammo/c-f.png", 35)]),
 			new Gun(2, true, "Dual Caldwell 92 New Army", 180, "img/new_dual.jpg", false,  [new AmmoType("img/ammo/c.png",0), new AmmoType("img/ammo/c-d.png", 40), new AmmoType("img/ammo/c-f.png", 35)]),
@@ -192,7 +197,8 @@ var gunFamilies = new Array(
 			new Gun(3, false, "Romero 77", 34, "img/romero.jpg", true, [new AmmoType("img/ammo/s.png", 0), new AmmoType("img/ammo/s-s.png", 10), new AmmoType("img/ammo/s-d.png", 50), new AmmoType("img/ammo/s-p.png", 10), new AmmoType("img/ammo/s-sl.png", 200)]),
 			new Gun(2, false, "Romero 77 Handcannon", 26, "img/romero_hand.jpg", true, [new AmmoType("img/ammo/s.png", 0), new AmmoType("img/ammo/s-s.png", 10), new AmmoType("img/ammo/s-d.png", 50), new AmmoType("img/ammo/s-p.png", 10), new AmmoType("img/ammo/s-sl.png", 200)]),
 			new Gun(3, false, "Romero 77 Talon", 59, "img/romero_tal.jpg", true, [new AmmoType("img/ammo/s.png", 0), new AmmoType("img/ammo/s-s.png", 10), new AmmoType("img/ammo/s-d.png", 50), new AmmoType("img/ammo/s-p.png", 10), new AmmoType("img/ammo/s-sl.png", 200)]),
-			new Gun(2, false, "Romero 77 Hatchet", 62, "img/romero_hatc.jpg", true, [new AmmoType("img/ammo/s.png", 0), new AmmoType("img/ammo/s-s.png", 10), new AmmoType("img/ammo/s-d.png", 50), new AmmoType("img/ammo/s-p.png", 10), new AmmoType("img/ammo/s-sl.png", 200)])
+			new Gun(2, false, "Romero 77 Hatchet", 62, "img/romero_hatc.jpg", true, [new AmmoType("img/ammo/s.png", 0), new AmmoType("img/ammo/s-s.png", 10), new AmmoType("img/ammo/s-d.png", 50), new AmmoType("img/ammo/s-p.png", 10), new AmmoType("img/ammo/s-sl.png", 200)]),
+			new Gun(3, false, "Romero 77 Alamo", 98, "img/romero_ala.jpg", true, [new AmmoType("img/ammo/s.png", 0), new AmmoType("img/ammo/s-s.png", 10), new AmmoType("img/ammo/s-d.png", 50), new AmmoType("img/ammo/s-p.png", 10), new AmmoType("img/ammo/s-sl.png", 200)])
 		)
 	),
 	new GunFamily(10, 2, new Array(
